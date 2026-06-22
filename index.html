@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Chronicles of the Veil</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #080810;
+      --deep:     #0d0d1a;
+      --surface:  #12121f;
+      --panel:    #1a1a2e;
+      --border:   #2a2a4a;
+      --gold:     #c8a84b;
+      --gold-dim: #8a6f2e;
+      --silver:   #8899bb;
+      --text:     #ccd0e0;
+      --muted:    #6670a0;
+      --veil:     #6633aa;
+      --veil-dim: #3d1f66;
+      --shadow:   #1a0033;
+      --danger:   #aa2244;
+      --glow:     rgba(200,168,75,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: var(--black);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--veil-dim); border-radius: 3px; }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: linear-gradient(180deg, rgba(8,8,16,0.97) 0%, rgba(8,8,16,0.7) 100%);
+      border-bottom: 1px solid rgba(100,50,170,0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: bold;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+      text-shadow: 0 0 20px rgba(200,168,75,0.5);
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      color: var(--silver);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    /* ── Hero ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 60%, rgba(102,51,170,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(170,34,68,0.08) 0%, transparent 60%),
+        linear-gradient(180deg, var(--black) 0%, #0a0515 50%, var(--black) 100%);
+    }
+
+    /* Animated veil particles */
+    .veil-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(102,51,170,0.6) 0%, transparent 70%);
+      animation: drift linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes drift {
+      0%   { transform: translateY(100vh) translateX(0) scale(0.5); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.3; }
+      100% { transform: translateY(-20vh) translateX(var(--drift-x, 40px)) scale(1.2); opacity: 0; }
+    }
+
+    /* Animated rune circle */
+    .rune-circle {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border: 1px solid rgba(102,51,170,0.15);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin 60s linear infinite;
+    }
+
+    .rune-circle::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(200,168,75,0.08);
+      border-radius: 50%;
+      animation: spin-reverse 45s linear infinite;
+    }
+
+    .rune-circle::after {
+      content: '';
+      position: absolute;
+      inset: 50px;
+      border: 1px solid rgba(102,51,170,0.1);
+      border-radius: 50%;
+    }
+
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    @keyframes spin-reverse { to { transform: rotate(-360deg); } }
+
+    .hero-content { position: relative; z-index: 2; padding: 2rem; }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      font-weight: normal;
+      color: #fff;
+      text-shadow: 0 0 60px rgba(102,51,170,0.5), 0 2px 4px rgba(0,0,0,0.8);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 3vw, 1.8rem);
+      color: var(--gold);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-shadow: 0 0 30px rgba(200,168,75,0.4);
+      margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--silver);
+      font-style: italic;
+    }
+
+    .hero-cta-group { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      padding: 0.8rem 2rem;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--veil) 0%, var(--veil-dim) 100%);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(102,51,170,0.4);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 40px rgba(102,51,170,0.7);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+    }
+
+    .btn-outline:hover {
+      background: rgba(200,168,75,0.1);
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(200,168,75,0.2);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+
+    .scroll-indicator svg { opacity: 0.5; }
+
+    @keyframes bob {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── Section Layout ── */
+    section { padding: 5rem 0; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--gold);
+      font-weight: normal;
+      text-shadow: 0 0 30px rgba(200,168,75,0.3);
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+      margin: 1.2rem auto 0;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── World Map Section ── */
+    #map-section {
+      background: linear-gradient(180deg, var(--black) 0%, var(--deep) 50%, var(--black) 100%);
+    }
+
+    .map-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .map-wrapper {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,0,0,0.4);
+    }
+
+    .map-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(100,50,170,0.04) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(100,50,170,0.04) 40px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #world-map {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: default;
+    }
+
+    .map-region {
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .map-region:hover .region-fill { filter: brightness(1.4); }
+    .map-region.active .region-fill { filter: brightness(1.6) drop-shadow(0 0 8px var(--gold)); }
+
+    .region-label {
+      pointer-events: none;
+      font-size: 11px;
+      fill: rgba(200,180,120,0.7);
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    .region-label.active { fill: var(--gold); }
+
+    /* Map info panel */
+    .map-info-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-info-panel::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(102,51,170,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .map-placeholder {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      gap: 1rem;
+    }
+
+    .map-placeholder svg { opacity: 0.25; }
+    .map-placeholder p { font-size: 0.9rem; font-style: italic; line-height: 1.6; }
+
+    .region-info { display: none; flex-direction: column; gap: 1rem; }
+    .region-info.visible { display: flex; }
+
+    .region-info-name {
+      font-size: 1.4rem;
+      color: var(--gold);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+
+    .region-info-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--veil);
+      border: 1px solid var(--veil-dim);
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .region-info-desc {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .region-info-stats {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    .stat-label { color: var(--muted); letter-spacing: 0.1em; }
+    .stat-value { color: var(--silver); }
+
+    /* ── Lore Encyclopedia ── */
+    #lore-section {
+      background: var(--black);
+    }
+
+    .lore-controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .lore-search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .lore-search-wrap svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    #lore-search {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    #lore-search:focus {
+      border-color: var(--veil-dim);
+      box-shadow: 0 0 0 3px rgba(102,51,170,0.15);
+    }
+
+    #lore-search::placeholder { color: var(--muted); }
+
+    .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .filter-tab {
+      padding: 0.5rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-tab:hover { border-color: var(--veil-dim); color: var(--silver); }
+    .filter-tab.active { background: var(--veil-dim); border-color: var(--veil); color: #fff; }
+
+    .lore-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .lore-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lore-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--card-accent, var(--veil-dim));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .lore-card:hover {
+      border-color: rgba(102,51,170,0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    .lore-card:hover::before { transform: scaleX(1); }
+
+    .lore-card-category {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--veil));
+      margin-bottom: 0.6rem;
+    }
+
+    .lore-card-title {
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+
+    .lore-card-excerpt {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .lore-card-footer {
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lore-danger-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid;
+    }
+
+    .tag-unknown { color: var(--muted); border-color: var(--border); }
+    .tag-low { color: #4a9; border-color: #2a6; }
+    .tag-moderate { color: #ca4; border-color: #864; }
+    .tag-high { color: #e63; border-color: #a42; }
+    .tag-extreme { color: #d33; border-color: #911; }
+    .tag-divine { color: #aaf; border-color: #66c; }
+
+    .lore-read-more {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--veil);
+    }
+
+    .lore-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      max-width: 680px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.8), 0 0 40px rgba(102,51,170,0.15);
+    }
+
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal-header {
+      padding: 2rem 2rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .modal-category {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--veil);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      color: var(--gold);
+      font-weight: normal;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+    .modal-body { padding: 1.5rem 2rem 2rem; }
+
+    .modal-section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .modal-text {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .modal-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item { }
+    .meta-key {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .meta-val { font-size: 0.9rem; color: var(--silver); }
+
+    /* ── Quote section ── */
+    #quote-section {
+      background: linear-gradient(180deg, var(--black) 0%, var(--shadow) 50%, var(--black) 100%);
+      padding: 6rem 0;
+    }
+
+    .quote-block {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .quote-mark {
+      font-size: 5rem;
+      line-height: 0.5;
+      color: var(--veil-dim);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .quote-text {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      line-height: 1.8;
+      color: var(--silver);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-attr {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-sub { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .map-layout { grid-template-columns: 1fr; }
+      .map-info-panel { min-height: 200px; }
+      .modal-meta-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Fade-in animation for content */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="#hero" class="nav-logo">Chronicles of the Veil</a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#map-section">World Map</a></li>
+    <li><a href="#lore-section">Lore</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="veil-particles" id="particles"></div>
+  <div class="rune-circle"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">A Dark Fantasy Universe</p>
+    <h1 class="hero-title">The Chronicles<br>of the Veil</h1>
+    <p class="hero-subtitle">Where shadow bleeds into truth</p>
+    <p class="hero-desc">
+      Beyond the mortal world lies the Veil — a living membrane between the realm of the living
+      and the endless dark. Those who touch it are forever changed. Those who cross it rarely return.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#map-section" class="btn btn-primary">Explore the World</a>
+      <a href="#lore-section" class="btn btn-outline">Read the Lore</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+      <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="8" cy="7" r="2" fill="currentColor">
+        <animate attributeName="cy" values="7;15;7" dur="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="2s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+</section>
+
+<!-- ── World Map ── -->
+<section id="map-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-eyebrow">Cartography of the Known World</p>
+      <h2 class="section-title">The Veilbound Lands</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="map-layout fade-up">
+      <div class="map-wrapper">
+        <svg id="world-map" viewBox="0 0 800 560" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="region-glow">
+              <feGaussianBlur stdDeviation="5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <!-- Ocean texture -->
+            <pattern id="ocean-dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="10" cy="10" r="0.5" fill="rgba(100,120,180,0.3)"/>
+            </pattern>
+          </defs>
+
+          <!-- Ocean background -->
+          <rect width="800" height="560" fill="#07080f"/>
+          <rect width="800" height="560" fill="url(#ocean-dots)"/>
+
+          <!-- Ocean label -->
+          <text x="680" y="480" font-size="10" fill="rgba(80,100,150,0.4)" font-style="italic" font-family="Georgia, serif">The Shrouded Sea</text>
+          <text x="50" y="500" font-size="10" fill="rgba(80,100,150,0.4)" font-style="italic" font-family="Georgia, serif">The Abyss of Veil</text>
+
+          <!-- Continent outline / coastline suggestion -->
+          <path d="M 140,60 L 680,50 L 720,100 L 700,180 L 730,260 L 700,360 L 640,420 L 560,450 L 420,460 L 300,450 L 200,430 L 140,380 L 100,280 L 90,180 Z" fill="#0e1018" stroke="rgba(60,80,120,0.3)" stroke-width="1.5"/>
+
+          <!-- ── Region: The Ashen Wastes (north) ── -->
+          <g class="map-region" data-region="ashen-wastes" onclick="selectRegion('ashen-wastes')">
+            <path class="region-fill" d="M 200,65 L 490,58 L 500,130 L 420,160 L 300,155 L 220,130 Z"
+              fill="rgba(80,60,50,0.55)" stroke="rgba(120,90,70,0.5)" stroke-width="1.5"/>
+            <text class="region-label" x="340" y="108" text-anchor="middle">The Ashen Wastes</text>
+          </g>
+
+          <!-- ── Region: Thornwall Mountains (NE) ── -->
+          <g class="map-region" data-region="thornwall" onclick="selectRegion('thornwall')">
+            <path class="region-fill" d="M 500,58 L 680,55 L 710,140 L 660,180 L 590,160 L 500,130 Z"
+              fill="rgba(50,55,70,0.7)" stroke="rgba(90,100,130,0.5)" stroke-width="1.5"/>
+            <!-- Mountain symbols -->
+            <polygon points="560,90 540,120 580,120" fill="rgba(100,110,140,0.4)" stroke="rgba(140,150,180,0.3)" stroke-width="0.5"/>
+            <polygon points="600,80 580,115 620,115" fill="rgba(100,110,140,0.4)" stroke="rgba(140,150,180,0.3)" stroke-width="0.5"/>
+            <polygon points="640,95 620,125 660,125" fill="rgba(100,110,140,0.4)" stroke="rgba(140,150,180,0.3)" stroke-width="0.5"/>
+            <text class="region-label" x="600" y="150" text-anchor="middle">Thornwall Mts.</text>
+          </g>
+
+          <!-- ── Region: The Hollow Forests (W) ── -->
+          <g class="map-region" data-region="hollow-forests" onclick="selectRegion('hollow-forests')">
+            <path class="region-fill" d="M 105,190 L 220,130 L 280,200 L 230,290 L 150,310 L 105,270 Z"
+              fill="rgba(30,60,35,0.65)" stroke="rgba(50,100,55,0.5)" stroke-width="1.5"/>
+            <!-- Tree symbols -->
+            <line x1="150" y1="220" x2="150" y2="240" stroke="rgba(60,100,50,0.5)" stroke-width="1"/>
+            <ellipse cx="150" cy="215" rx="8" ry="10" fill="rgba(40,80,30,0.5)"/>
+            <line x1="175" y1="230" x2="175" y2="248" stroke="rgba(60,100,50,0.5)" stroke-width="1"/>
+            <ellipse cx="175" cy="224" rx="8" ry="10" fill="rgba(40,80,30,0.5)"/>
+            <text class="region-label" x="175" y="275" text-anchor="middle">Hollow Forests</text>
+          </g>
+
+          <!-- ── Region: The Shattered Citadel (center-N) ── -->
+          <g class="map-region" data-region="shattered-citadel" onclick="selectRegion('shattered-citadel')">
+            <path class="region-fill" d="M 300,155 L 420,160 L 430,230 L 380,260 L 300,250 L 270,210 Z"
+              fill="rgba(70,40,80,0.7)" stroke="rgba(110,60,130,0.6)" stroke-width="1.5"/>
+            <!-- Citadel symbol -->
+            <rect x="345" y="190" width="10" height="18" fill="rgba(130,70,160,0.5)"/>
+            <rect x="360" y="186" width="10" height="22" fill="rgba(130,70,160,0.5)"/>
+            <rect x="375" y="190" width="10" height="18" fill="rgba(130,70,160,0.5)"/>
+            <line x1="340" y1="208" x2="390" y2="208" stroke="rgba(130,70,160,0.4)" stroke-width="1"/>
+            <text class="region-label" x="355" y="235" text-anchor="middle">Shattered Citadel</text>
+          </g>
+
+          <!-- ── Region: The Veilgate (center) ── -->
+          <g class="map-region" data-region="veilgate" onclick="selectRegion('veilgate')">
+            <path class="region-fill" d="M 270,210 L 380,260 L 400,340 L 320,370 L 240,330 L 220,260 Z"
+              fill="rgba(60,30,100,0.8)" stroke="rgba(102,51,170,0.7)" stroke-width="2"/>
+            <!-- Veil glow -->
+            <ellipse cx="320" cy="295" rx="30" ry="35" fill="rgba(102,51,170,0.2)" filter="url(#region-glow)"/>
+            <ellipse cx="320" cy="295" rx="12" ry="14" fill="rgba(130,70,200,0.4)"/>
+            <text class="region-label" x="320" y="340" text-anchor="middle">The Veilgate</text>
+          </g>
+
+          <!-- ── Region: The Umbral Depths (E) ── -->
+          <g class="map-region" data-region="umbral-depths" onclick="selectRegion('umbral-depths')">
+            <path class="region-fill" d="M 490,170 L 660,180 L 680,320 L 590,360 L 480,320 L 460,230 Z"
+              fill="rgba(20,15,40,0.85)" stroke="rgba(60,40,100,0.5)" stroke-width="1.5"/>
+            <!-- Depth symbol -->
+            <circle cx="570" cy="260" r="20" fill="none" stroke="rgba(60,30,80,0.6)" stroke-width="1"/>
+            <circle cx="570" cy="260" r="12" fill="none" stroke="rgba(80,40,110,0.5)" stroke-width="1"/>
+            <circle cx="570" cy="260" r="5" fill="rgba(60,20,80,0.7)"/>
+            <text class="region-label" x="570" y="310" text-anchor="middle">Umbral Depths</text>
+          </g>
+
+          <!-- ── Region: The Sunken Coast (S) ── -->
+          <g class="map-region" data-region="sunken-coast" onclick="selectRegion('sunken-coast')">
+            <path class="region-fill" d="M 200,360 L 340,380 L 430,360 L 480,380 L 560,360 L 580,420 L 440,450 L 290,445 L 180,420 Z"
+              fill="rgba(25,40,65,0.7)" stroke="rgba(40,70,110,0.5)" stroke-width="1.5"/>
+            <text class="region-label" x="380" y="415" text-anchor="middle">The Sunken Coast</text>
+          </g>
+
+          <!-- ── Region: Wraithmoor (SW) ── -->
+          <g class="map-region" data-region="wraithmoor" onclick="selectRegion('wraithmoor')">
+            <path class="region-fill" d="M 105,270 L 200,360 L 190,420 L 130,410 L 100,360 L 98,300 Z"
+              fill="rgba(35,30,45,0.75)" stroke="rgba(70,60,90,0.5)" stroke-width="1.5"/>
+            <text class="region-label" x="145" y="355" text-anchor="middle">Wraithmoor</text>
+          </g>
+
+          <!-- Compass rose -->
+          <g transform="translate(728, 490)">
+            <circle r="18" fill="rgba(10,10,20,0.8)" stroke="rgba(100,80,50,0.4)" stroke-width="1"/>
+            <line x1="0" y1="-14" x2="0" y2="14" stroke="rgba(150,120,70,0.6)" stroke-width="1"/>
+            <line x1="-14" y1="0" x2="14" y2="0" stroke="rgba(150,120,70,0.6)" stroke-width="1"/>
+            <polygon points="0,-14 -3,-6 3,-6" fill="rgba(200,168,75,0.8)"/>
+            <text x="0" y="-17" text-anchor="middle" font-size="7" fill="rgba(200,168,75,0.7)" font-family="Georgia">N</text>
+          </g>
+
+          <!-- Scale bar -->
+          <g transform="translate(30, 530)">
+            <line x1="0" y1="0" x2="60" y2="0" stroke="rgba(100,80,50,0.5)" stroke-width="1"/>
+            <line x1="0" y1="-3" x2="0" y2="3" stroke="rgba(100,80,50,0.5)" stroke-width="1"/>
+            <line x1="60" y1="-3" x2="60" y2="3" stroke="rgba(100,80,50,0.5)" stroke-width="1"/>
+            <text x="30" y="-6" text-anchor="middle" font-size="7" fill="rgba(150,130,90,0.5)" font-family="Georgia">100 leagues</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Info Panel -->
+      <div class="map-info-panel">
+        <div class="map-placeholder" id="map-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 24 Q16 16 24 24 Q32 32 40 24" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="24" cy="24" r="3" fill="currentColor"/>
+          </svg>
+          <p>Select a region on the map to reveal its secrets and history.</p>
+        </div>
+        <div class="region-info" id="region-info">
+          <div class="region-info-name" id="ri-name"></div>
+          <span class="region-info-tag" id="ri-tag"></span>
+          <p class="region-info-desc" id="ri-desc"></p>
+          <div class="region-info-stats" id="ri-stats"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Quote ── -->
+<section id="quote-section">
+  <div class="quote-block fade-up">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">
+      The Veil does not separate the living from the dead. It separates those who know the truth
+      from those who are still permitted to pretend.
+    </p>
+    <p class="quote-attr">— Seraphel the Unbound, First Warden of the Veilgate</p>
+  </div>
+</section>
+
+<!-- ── Lore Encyclopedia ── -->
+<section id="lore-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-eyebrow">The Veilbound Codex</p>
+      <h2 class="section-title">Lore Encyclopedia</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="lore-controls fade-up">
+      <div class="lore-search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input id="lore-search" type="text" placeholder="Search the codex…" oninput="filterLore()"/>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-cat="all" onclick="setCategory('all', this)">All</button>
+        <button class="filter-tab" data-cat="location" onclick="setCategory('location', this)">Locations</button>
+        <button class="filter-tab" data-cat="faction" onclick="setCategory('faction', this)">Factions</button>
+        <button class="filter-tab" data-cat="magic" onclick="setCategory('magic', this)">Magic</button>
+        <button class="filter-tab" data-cat="creature" onclick="setCategory('creature', this)">Creatures</button>
+        <button class="filter-tab" data-cat="artifact" onclick="setCategory('artifact', this)">Artifacts</button>
+      </div>
+    </div>
+
+    <div class="lore-grid" id="lore-grid"></div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <p class="footer-logo">The Chronicles of the Veil</p>
+  <p class="footer-sub">A living universe beyond the threshold of shadow.</p>
+</footer>
+
+<!-- ── Lore Modal ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <p class="modal-category" id="modal-cat"></p>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-section-label">Overview</p>
+      <p class="modal-text" id="modal-overview"></p>
+      <p class="modal-section-label" id="modal-lore-label">Lore</p>
+      <p class="modal-text" id="modal-lore"></p>
+      <div class="modal-meta-grid" id="modal-meta"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Particle system ──
+(function() {
+  const container = document.getElementById('particles');
+  const count = 22;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 40 + Math.random() * 120;
+    const delay = Math.random() * 12;
+    const duration = 12 + Math.random() * 20;
+    const drift = (Math.random() - 0.5) * 120;
+    const left = Math.random() * 100;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${left}%;
+      --drift-x:${drift}px;
+      animation-duration:${duration}s;
+      animation-delay:-${delay}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+// ── Intersection Observer for fade-up ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── Nav active state ──
+const sections = ['hero', 'map-section', 'lore-section'];
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href').replace('#', '');
+    a.classList.toggle('active', href === current);
+  });
+});
+
+// ── World Map Data ──
+const regionData = {
+  'ashen-wastes': {
+    name: 'The Ashen Wastes',
+    tag: 'Blighted Landscape',
+    desc: 'Once fertile plains that were scorched during the First Sundering — a catastrophic ritual that tore a hole in the Veil three centuries ago. The land remains barren, coated in pale grey ash that never settles, driven by winds that carry whispers of the dead. Nomadic survivors called the Cinder Wanderers roam its edges.',
+    stats: [
+      ['Climate', 'Perpetual ashfall'],
+      ['Danger Level', 'High'],
+      ['Notable Feature', 'The Scar of the First Sundering'],
+      ['Inhabitants', 'Cinder Wanderers, Shade remnants'],
+    ]
+  },
+  'thornwall': {
+    name: 'The Thornwall Mountains',
+    tag: 'Impassable Range',
+    desc: 'A jagged mountain range forming the northeastern border of the known world. The peaks are wrapped in black ice year-round, and ancient fortifications — older than any living kingdom — dot the passes. Only the Ironbound Covenant knows the safe routes through.',
+    stats: [
+      ['Climate', 'Arctic, perpetual blizzards'],
+      ['Danger Level', 'Extreme'],
+      ['Notable Feature', 'The Gate of Ruin (sealed pass)'],
+      ['Inhabitants', 'Ironbound Covenant, Stone Wraiths'],
+    ]
+  },
+  'hollow-forests': {
+    name: 'The Hollow Forests',
+    tag: 'Cursed Woodland',
+    desc: 'Ancient trees that have grown hollow from the inside out, their bark blackened and their roots drinking from underground streams tainted by Veil-energy. Travellers who stray from the known paths often vanish. The Thornwhisper Druids tend to the forest and keep an uneasy balance with the entities within.',
+    stats: [
+      ['Climate', 'Dim, mist-laden'],
+      ['Danger Level', 'Moderate to High'],
+      ['Notable Feature', 'The Heart Tree (living Veil anchor)'],
+      ['Inhabitants', 'Thornwhisper Druids, Lost Ones'],
+    ]
+  },
+  'shattered-citadel': {
+    name: 'The Shattered Citadel',
+    tag: 'Fallen Stronghold',
+    desc: 'The ruins of the Veilwarden High Seat, destroyed during the Betrayal of the Unbound. Its stones float at impossible angles, suspended by residual magic. The Umbral Court now claims the ruins as sacred ground, and the ghost of the last Archwardens is said to still walk its broken halls.',
+    stats: [
+      ['Climate', 'Unnaturally still'],
+      ['Danger Level', 'Extreme'],
+      ['Notable Feature', 'The Floating Throne Hall'],
+      ['Inhabitants', 'Umbral Court remnants, Arcane Hauntings'],
+    ]
+  },
+  'veilgate': {
+    name: 'The Veilgate',
+    tag: 'Threshold of Worlds',
+    desc: 'The most sacred and feared location in the known world. A permanent tear in reality where the mortal plane and the Veil overlap completely. The air shimmers with violet light and the laws of physics become suggestions. No army has ever crossed through its center and returned intact.',
+    stats: [
+      ['Climate', 'Reality-unstable'],
+      ['Danger Level', 'Divine'],
+      ['Notable Feature', 'The Threshold Arch (permanent tear)'],
+      ['Inhabitants', 'Veilborn entities, Seraphel\'s Echo'],
+    ]
+  },
+  'umbral-depths': {
+    name: 'The Umbral Depths',
+    tag: 'Sunless Territory',
+    desc: 'A vast subterranean network of caverns and tunnels that the sun has never touched. The Depths stretch beneath the eastern lands and are home to entire civilizations that evolved in total darkness. The Umbral Court was born here, worshipping the dark as a living god called the Unlit.',
+    stats: [
+      ['Climate', 'Total darkness, cold'],
+      ['Danger Level', 'Extreme'],
+      ['Notable Feature', 'The Cathedral of the Unlit'],
+      ['Inhabitants', 'Umbral Court, Depth-Dwellers, Veilborn'],
+    ]
+  },
+  'sunken-coast': {
+    name: 'The Sunken Coast',
+    tag: 'Drowned Shores',
+    desc: 'A coastline where entire cities have sunk beneath the tidal waters over centuries of creeping sea-rise caused by Veil corruption in the deep ocean. The ruins beneath the waves are still inhabited — by things that do not need air to survive. Trade ships cross these waters quickly and never anchor overnight.',
+    stats: [
+      ['Climate', 'Stormy, perpetual fog'],
+      ['Danger Level', 'High'],
+      ['Notable Feature', 'The Drowned Throne (submerged palace)'],
+      ['Inhabitants', 'Sea-touched, Veilfish, Ghost ships'],
+    ]
+  },
+  'wraithmoor': {
+    name: 'Wraithmoor',
+    tag: 'Haunted Wetlands',
+    desc: 'A fog-choked bog where the boundary between the living and the dead is razor-thin. Souls of the recent dead linger here for years before passing fully into the Veil, creating a landscape of confused, drifting wraiths. The Mourncallers — grief-touched priests — minister to the lost souls and guide them through.',
+    stats: [
+      ['Climate', 'Dense fog, perpetual twilight'],
+      ['Danger Level', 'Moderate'],
+      ['Notable Feature', 'The Pool of Remembrance'],
+      ['Inhabitants', 'Mourncallers, Wraiths, lingering dead'],
+    ]
+  }
+};
+
+let activeRegion = null;
+
+function selectRegion(id) {
+  const data = regionData[id];
+  if (!data) return;
+
+  // Deselect previous
+  if (activeRegion) {
+    const prev = document.querySelector(`[data-region="${activeRegion}"]`);
+    if (prev) prev.classList.remove('active');
+    const prevLabel = prev ? prev.querySelector('.region-label') : null;
+    if (prevLabel) prevLabel.classList.remove('active');
+  }
+
+  // Select new
+  const el = document.querySelector(`[data-region="${id}"]`);
+  if (el) el.classList.add('active');
+  const label = el ? el.querySelector('.region-label') : null;
+  if (label) label.classList.add('active');
+  activeRegion = id;
+
+  // Populate panel
+  document.getElementById('map-placeholder').style.display = 'none';
+  const ri = document.getElementById('region-info');
+  ri.classList.add('visible');
+
+  document.getElementById('ri-name').textContent = data.name;
+  document.getElementById('ri-tag').textContent = data.tag;
+  document.getElementById('ri-desc').textContent = data.desc;
+
+  const statsEl = document.getElementById('ri-stats');
+  statsEl.innerHTML = data.stats.map(([k, v]) => `
+    <div class="stat-row">
+      <span class="stat-label">${k}</span>
+      <span class="stat-value">${v}</span>
+    </div>
+  `).join('');
+}
+
+// ── Lore Data ──
+const loreEntries = [
+  // Locations
+  {
+    id: 'veilgate-lore', category: 'location', title: 'The Veilgate',
+    excerpt: 'The permanent tear in reality where two worlds bleed into one. No map can accurately show its boundaries — they shift.',
+    dangerClass: 'tag-divine', dangerLabel: 'Divine Threat',
+    overview: 'The Veilgate is the oldest recorded anomaly in the known world, predating the founding of the first kingdom by at least two millennia. It manifests as a shimmering violet rift approximately a quarter-league across, suspended between two basalt pillars known as the Threshold Arch.',
+    lore: 'Ancient texts of the Veilwardens describe the Gate as a wound that the world inflicted upon itself — a consequence of the first mortal who attempted to command death rather than accept it. The Gate breathes: at dawn it pulses outward, at dusk it contracts. Creatures pass through it involuntarily during these pulse-moments, pulled from the Veil into the mortal world or dragged back in. No mortal sorcery has succeeded in closing or widening the Gate permanently.',
+    meta: [['Also Known As', 'The Threshold / The Mouth'], ['First Recorded', 'Pre-Sundering Era'], ['Status', 'Active / Unstable'], ['Controlled By', 'No faction (contested)']]
+  },
+  {
+    id: 'ashen-wastes-lore', category: 'location', title: 'The Ashen Wastes',
+    excerpt: 'Scorched plains where the First Sundering tore the earth apart. The ash does not settle. The whispers do not stop.',
+    dangerClass: 'tag-high', dangerLabel: 'High Threat',
+    overview: 'The Ashen Wastes cover roughly three hundred square leagues of the northern continent. Before the First Sundering, these lands were the breadbasket of the old empire, producing grain and livestock for millions.',
+    lore: 'The Sundering was triggered when a cabal of rogue Veilweavers attempted to forcibly merge the mortal plane with the Veil to achieve immortality. Their ritual succeeded — and failed — simultaneously. They achieved a merging, but not the controlled kind they sought. The explosion of Veil energy incinerated the land in seconds and catapulted their souls into the Veil where they remain, unable to die and unable to rest. The Cinder Wanderers who now inhabit the edges are descendants of survivors, culturally adapted to life under constant ashfall.',
+    meta: [['Size', '~300 square leagues'], ['Origin', 'First Sundering (3 centuries ago)'], ['Danger Level', 'High'], ['Primary Hazard', 'Shade remnants, ash-tides']]
+  },
+  // Factions
+  {
+    id: 'veilwardens', category: 'faction', title: 'The Veilwardens',
+    excerpt: 'Ancient guardians sworn to contain the Veil. Their order is three millennia old, their numbers dwindling, their secrets absolute.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Neutral',
+    overview: 'The Veilwardens are the oldest surviving organization in the known world, founded in the age before recorded history by an entity known only as "the First Warden." Their mandate is singular: monitor, contain, and when necessary, seal breaches in the Veil.',
+    lore: 'The Wardens operate from a principle called the Doctrine of Minimum Intervention — they believe any tampering with the Veil beyond containment accelerates its instability. This has put them in perpetual conflict with the Umbral Court (who worship it) and independent Veilweavers (who exploit it). The Wardens keep no written records of their true membership; their hierarchy is entirely oral and memorized. At any given time, no more than forty Wardens exist. When one dies, another is chosen through a ritual called the Sounding.',
+    meta: [['Founded', 'Pre-Sundering Era'], ['Size', 'Max 40 members'], ['Headquarters', 'Shifting / secret'], ['Allegiance', 'The Veil\'s stability']]
+  },
+  {
+    id: 'umbral-court', category: 'faction', title: 'The Umbral Court',
+    excerpt: 'A theocratic order that venerates the darkness within the Veil. They do not believe the Veil should be sealed. They believe it should swallow everything.',
+    dangerClass: 'tag-extreme', dangerLabel: 'Extreme Threat',
+    overview: 'The Umbral Court is part religious order, part militant theocracy, part apocalyptic cult. Founded in the Umbral Depths by a visionary called the First Speaker, they hold that the Veil\'s expansion is not a catastrophe to be prevented but a divine inevitability to be welcomed.',
+    lore: 'The Court operates in three tiers: the Voices (public priests and missionaries), the Fingers (covert agents and assassins), and the Hollow (their inner council, whose identities are unknown even to most Court members). Their theology holds that the Veil — which they call the Unlit — is a conscious god that was wrongfully separated from the mortal world and seeks reunion. Each breach or expansion of the Veil is considered a sacrament. They have been linked to at least four deliberate Veil-breach incidents.',
+    meta: [['Founded', '~200 years ago'], ['Size', 'Thousands (estimated)'], ['Headquarters', 'Cathedral of the Unlit, Umbral Depths'], ['Allegiance', 'The Unlit (their deity)']]
+  },
+  {
+    id: 'ironbound', category: 'faction', title: 'The Ironbound Covenant',
+    excerpt: 'Mercenary-scholars who guard the Thornwall passes. They sell safe passage, maps, and silence with equal efficiency.',
+    dangerClass: 'tag-moderate', dangerLabel: 'Moderate Risk',
+    overview: 'The Ironbound Covenant controls access to the only viable passages through the Thornwall Mountains. They are simultaneously a military organization, a merchant guild, and a repository of forbidden geographical knowledge.',
+    lore: 'The Covenant\'s founders were a regiment of soldiers who discovered that the Thornwall passes were not naturally impassable — they had been sealed by an ancient civilization whose ruins still lace the mountain range. The soldiers realized the passes could be safely navigated with the right knowledge, and built their entire organization around controlling that knowledge. They are scrupulously neutral in political conflicts, operating by a code that forbids them from leveraging military access for political gain — a code they have managed to keep for two hundred years, which is itself remarkable.',
+    meta: [['Founded', '~200 years ago'], ['Size', '~2,000 members'], ['Headquarters', 'Gate-Hold, Thornwall Mts.'], ['Services', 'Mountain passage, cartography, intelligence']]
+  },
+  // Magic
+  {
+    id: 'veilweaving', category: 'magic', title: 'Veilweaving',
+    excerpt: 'The art of reaching through the membrane of the Veil to borrow its energies. Useful. Addictive. Corrosive to the practitioner\'s sense of self.',
+    dangerClass: 'tag-high', dangerLabel: 'Self-Hazard: High',
+    overview: 'Veilweaving is the most widespread form of arcane practice in the known world — and the most dangerous. A Veilweaver reaches their consciousness partially into the Veil and draws out threads of its energy, shaping them into effects in the mortal world.',
+    lore: 'The fundamental problem with Veilweaving is that the Veil is not passive. Every time a Weaver reaches in, something on the other side notices. Experienced Weavers develop what\'s called a "thread-shadow" — a persistent impression left in the Veil of their specific consciousness-signature. This shadow grows with use. Eventually, beings within the Veil can follow the shadow back to the Weaver. Most Veilweavers practice deliberately limited weaving to prevent their shadow from becoming too defined. Those who push beyond these limits are called Unravellers — and most go mad within a decade.',
+    meta: [['Accessibility', 'Innate talent required'], ['Side Effects', 'Thread-shadow, identity erosion'], ['Maximum Safe Use', 'Disputed'], ['Forbidden Applications', 'Veil-tearing, soul-binding']]
+  },
+  {
+    id: 'shadowbinding', category: 'magic', title: 'Shadowbinding',
+    excerpt: 'The forbidden practice of binding Veil entities to one\'s will. The bindings always break eventually.',
+    dangerClass: 'tag-extreme', dangerLabel: 'Extreme Hazard',
+    overview: 'Shadowbinding is the practice of reaching into the Veil and compelling one of its inhabitants — a Veilborn entity — to serve in the mortal world. It is banned by every legitimate governing body and openly practiced by the Umbral Court.',
+    lore: 'The mechanism of Shadowbinding requires the practitioner to forge a resonance-link between their own life-force and the entity\'s essential nature. While the link holds, the entity is compelled. The catastrophic flaw: Veilborn do not tire, do not die, and do not forgive. Every binding has a failure point — a moment when the entity\'s will overcomes the binding — and when it breaks, the entity is free, enraged, and already bonded to the practitioner\'s life-force. Documented cases of successful Shadowbinding relationships lasting more than ten years can be counted on one hand.',
+    meta: [['Legal Status', 'Banned in all jurisdictions'], ['Risk Level', 'Practitioner mortality: ~90% within 20 years'], ['Practitioners', 'Umbral Court, rogue Weavers'], ['Known Failures', 'The Night of Unravelled Hands (records sealed)']]
+  },
+  {
+    id: 'mourncalling', category: 'magic', title: 'Mourncalling',
+    excerpt: 'A gentle magic that speaks to lingering dead. The Mourncallers do not command the dead — they comfort them, and guide them onward.',
+    dangerClass: 'tag-low', dangerLabel: 'Low Risk',
+    overview: 'Mourncalling is a subdiscipline of Veilweaving practiced exclusively by the Mourncallers of Wraithmoor. Unlike other Veil-arts, Mourncalling does not take from the Veil — it speaks across it.',
+    lore: 'A Mourncaller extends a very fine, very passive thread into the Veil not to draw power but to create a channel of communication. Through this channel, they can hear the lingering impressions of recently deceased souls — not their full consciousness, but the emotional residue they leave behind. With skill and patience, a Mourncaller can interpret these impressions and determine what is keeping a soul from passing fully into the Veil. Resolution of that anchoring element — delivering a message, retrieving an object, finding a missing person — allows the soul to pass. Mourncallers have the lowest thread-shadow accumulation of any Veil practitioners.',
+    meta: [['Accessibility', 'Learned skill, rare talent'], ['Risk Level', 'Low (passive practice)'], ['Practitioners', 'Mourncallers of Wraithmoor'], ['Applications', 'Soul guidance, grief counseling, investigation']]
+  },
+  // Creatures
+  {
+    id: 'veilborn', category: 'creature', title: 'Veilborn',
+    excerpt: 'Entities native to the Veil. Not spirits, not demons — something older that predates both concepts. They are curious. They are patient. They are dangerous.',
+    dangerClass: 'tag-extreme', dangerLabel: 'Extreme Threat',
+    overview: 'Veilborn is the collective term for entities that originate within the Veil itself. They are not spirits of the dead, nor demons from any known mythology. They appear to be native life forms evolved within the physics of the Veil over an unknown span of time.',
+    lore: 'Veilborn do not appear to have malicious intent as a default — they are simply alien in their motivations. Their primary drive seems to be curiosity about the mortal world, which they experience as exotic and incomprehensible. The danger arises because their methods of investigation are not calibrated for mortal fragility. A Veilborn examining a mortal\'s mind out of curiosity produces the same result as a deliberate assault. They range from the small Drift-motes (harmless, drifting wisps) to the Vast — enormous presences rarely encountered directly but whose existence is inferred from the destruction left in their wake.',
+    meta: [['Origin', 'Native to the Veil'], ['Intelligence', 'Varies (Drift-mote to Vast)'], ['Threat Level', 'Context-dependent'], ['Communication', 'Possible with specialized training']]
+  },
+  {
+    id: 'shade-remnants', category: 'creature', title: 'Shade Remnants',
+    excerpt: 'The scorched echoes of souls caught in the First Sundering. They replay their final moments forever, unable to comprehend they are dead.',
+    dangerClass: 'tag-high', dangerLabel: 'High Threat',
+    overview: 'Shade Remnants are the most common hostile entities found in the Ashen Wastes. They are not true Veilborn — they are the incomplete impressions left when a large number of souls are simultaneously destroyed before they can properly enter the Veil.',
+    lore: 'The First Sundering killed approximately forty thousand people in seconds. The violence and speed of their deaths created a situation where their soul-impressions could not complete the transition into the Veil. They became "stuck" in a loop, experiencing their final moments of terror repeatedly. They are not fully conscious — they cannot be communicated with or reasoned with. They respond to the presence of living beings by attempting to replicate the circumstances of their own deaths upon them. Mourncallers who have entered the Wastes have described the experience as standing inside a single scream stretched across three centuries.',
+    meta: [['Origin', 'First Sundering victims'], ['Behavior', 'Repeating death-loop'], ['Location', 'Ashen Wastes (primary)'], ['Neutralization', 'Mourncalling (partial only)']]
+  },
+  {
+    id: 'stone-wraith', category: 'creature', title: 'Stone Wraiths',
+    excerpt: 'Entities bound to the Thornwall\'s ancient stone. They do not leave. They do not forgive trespass. They remember every path ever walked.',
+    dangerClass: 'tag-high', dangerLabel: 'High Threat',
+    overview: 'Stone Wraiths are unique Veilborn entities that have formed a symbiosis with the ancient rock of the Thornwall Mountains. Unlike most Veilborn, they are entirely fixed to a geographic location and cannot be drawn out of the mountains.',
+    lore: 'The Stone Wraiths appear to be a single distributed consciousness — each individual wraith is more like a limb than a separate being. They share memory across the entire mountain range, which means they know every path, every secret passage, and the identity of every being who has ever crossed the Thornwall. The Ironbound Covenant maintains a grudging working relationship with the Wraiths, which is part of what makes their guide services uniquely reliable. The Covenant knows which passes the Wraiths permit and which they do not — and has learned never to ask why the forbidden passes are forbidden.',
+    meta: [['Origin', 'Veilborn-geology hybrid'], ['Behavior', 'Territorial, retentive'], ['Location', 'Thornwall Mountains (only)'], ['Relationship w/ Ironbound', 'Uneasy neutrality']]
+  },
+  // Artifacts
+  {
+    id: 'veil-anchor', category: 'artifact', title: 'A Veil Anchor',
+    excerpt: 'An object infused with enough Veil-energy to stabilize a localized breach. Extraordinarily rare. Every known Anchor has a history of changing hands through violence.',
+    dangerClass: 'tag-high', dangerLabel: 'Dangerous to Possess',
+    overview: 'A Veil Anchor is a physical object — typically a carved stone or cast metal vessel — that has been saturated with Veil-energy over a long period until it can independently dampen or stabilize nearby Veil activity. They do not suppress the Veil; they regulate it.',
+    lore: 'There are nine known Veil Anchors in existence. The Veilwardens hold six. One is lost in the Ashen Wastes. One is held by the Ironbound Covenant as collateral in an ancient agreement whose terms no one currently living fully understands. One was reportedly acquired by the Umbral Court seventeen years ago, at which point it presumably serves the opposite of its intended purpose. Anchors are not destroyed by the Umbral Court — they are inverted, calibrated to amplify Veil activity rather than dampen it. This takes approximately a decade of ritual work to accomplish.',
+    meta: [['Known Quantity', '9 (6 Warden-held, 3 unaccounted)'], ['Effect', 'Veil stabilization (or inversion)'], ['Creation', 'Unknown / ancient'], ['Current Status', '3 missing / potentially hostile']]
+  },
+  {
+    id: 'unbound-blade', category: 'artifact', title: 'The Unbound Blade',
+    excerpt: 'A sword forged from crystallized Veil-energy by Seraphel before she crossed. It cuts what cannot otherwise be cut — including lies, illusions, and the thread between a Shadowbinder and their bound.',
+    dangerClass: 'tag-extreme', dangerLabel: 'Extreme — Misuse Fatal',
+    overview: 'The Unbound Blade is the only weapon known to inflict wounds upon fully manifested Veilborn entities. It is also the only tool documented to sever an active Shadowbinding without killing the practitioner.',
+    lore: 'Seraphel the Unbound — the First Warden — spent thirty years crystallizing a fragment of raw Veil-energy into physical form. The resulting blade is approximately twenty inches long, appears black in normal light but glows violet when near Veil activity, and does not hold an edge by any conventional understanding of metalwork. Its cutting action appears to operate on a conceptual level: it severs connections more than matter. A Shadowbinder cut with the Unbound Blade finds their bindings dissolving. A ward of illusion struck by it unravels. Whether this applies to the Veil itself — whether it could be used to close the Veilgate — is the most debated question in Veilwarden scholarship. Seraphel\'s echo, still haunting the Shattered Citadel, refuses to answer.',
+    meta: [['Creator', 'Seraphel the Unbound'], ['Material', 'Crystallized Veil-energy'], ['Current Location', 'Unknown (last seen: Shattered Citadel)'], ['Unique Properties', 'Harms Veilborn, severs Shadowbinding']]
+  }
+];
+
+let currentCategory = 'all';
+let currentSearch = '';
+
+function renderLore() {
+  const grid = document.getElementById('lore-grid');
+  const term = currentSearch.toLowerCase();
+
+  const categoryColors = {
+    location: '#4488cc',
+    faction:  '#cc4466',
+    magic:    '#9944cc',
+    creature: '#cc6622',
+    artifact: '#44aa88'
+  };
+
+  const filtered = loreEntries.filter(e => {
+    const matchCat = currentCategory === 'all' || e.category === currentCategory;
+    const matchSearch = !term ||
+      e.title.toLowerCase().includes(term) ||
+      e.excerpt.toLowerCase().includes(term);
+    return matchCat && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p class="lore-empty">No entries found in the codex matching your query.</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(e => `
+    <div class="lore-card" style="--card-accent: ${categoryColors[e.category] || 'var(--veil)'}" onclick="openModal('${e.id}')">
+      <p class="lore-card-category">${e.category}</p>
+      <h3 class="lore-card-title">${e.title}</h3>
+      <p class="lore-card-excerpt">${e.excerpt}</p>
+      <div class="lore-card-footer">
+        <span class="lore-danger-tag ${e.dangerClass}">${e.dangerLabel}</span>
+        <span class="lore-read-more">Read Entry →</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setCategory(cat, btn) {
+  currentCategory = cat;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderLore();
+}
+
+function filterLore() {
+  currentSearch = document.getElementById('lore-search').value;
+  renderLore();
+}
+
+// ── Modal ──
+function openModal(id) {
+  const entry = loreEntries.find(e => e.id === id);
+  if (!entry) return;
+
+  document.getElementById('modal-cat').textContent = entry.category.toUpperCase();
+  document.getElementById('modal-title').textContent = entry.title;
+  document.getElementById('modal-overview').textContent = entry.overview;
+  document.getElementById('modal-lore').textContent = entry.lore;
+
+  const metaEl = document.getElementById('modal-meta');
+  metaEl.innerHTML = (entry.meta || []).map(([k, v]) => `
+    <div class="meta-item">
+      <p class="meta-key">${k}</p>
+      <p class="meta-val">${v}</p>
+    </div>
+  `).join('');
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModalDirect();
+});
+
+// Init
+renderLore();
+</script>
+</body>
+</html>
