@@ -790,8 +790,9 @@
     <h1 class="hero-title">The Chronicles<br>of the Veil</h1>
     <p class="hero-subtitle">Where shadow bleeds into truth</p>
     <p class="hero-desc">
-      Beyond the mortal world lies the Veil — a living membrane between the realm of the living
-      and the endless dark. Those who touch it are forever changed. Those who cross it rarely return.
+      The gods are not divine. They are parasites — entities that arrived after the world was made
+      and learned they could feed on belief. Two bloodlines. Two paths. One truth that only one of
+      them will survive long enough to understand.
     </p>
     <div class="hero-cta-group">
       <a href="#map-section" class="btn btn-primary">Explore the World</a>
@@ -816,7 +817,7 @@
   <div class="container">
     <div class="section-header fade-up">
       <p class="section-eyebrow">Cartography of the Known World</p>
-      <h2 class="section-title">The Veilbound Lands</h2>
+      <h2 class="section-title">The World of Ashes of Obedience</h2>
       <div class="section-divider"></div>
     </div>
 
@@ -843,32 +844,32 @@
           <rect width="800" height="560" fill="url(#ocean-dots)"/>
 
           <!-- Ocean label -->
-          <text x="680" y="480" font-size="10" fill="rgba(80,100,150,0.4)" font-style="italic" font-family="Georgia, serif">The Shrouded Sea</text>
-          <text x="50" y="500" font-size="10" fill="rgba(80,100,150,0.4)" font-style="italic" font-family="Georgia, serif">The Abyss of Veil</text>
+          <text x="680" y="480" font-size="10" fill="rgba(80,100,150,0.4)" font-style="italic" font-family="Georgia, serif">The Outer Sea</text>
+          <text x="50" y="500" font-size="10" fill="rgba(80,100,150,0.4)" font-style="italic" font-family="Georgia, serif">The Shrouded Waters</text>
 
           <!-- Continent outline / coastline suggestion -->
           <path d="M 140,60 L 680,50 L 720,100 L 700,180 L 730,260 L 700,360 L 640,420 L 560,450 L 420,460 L 300,450 L 200,430 L 140,380 L 100,280 L 90,180 Z" fill="#0e1018" stroke="rgba(60,80,120,0.3)" stroke-width="1.5"/>
 
-          <!-- ── Region: The Ashen Wastes (north) ── -->
-          <g class="map-region" data-region="ashen-wastes" onclick="selectRegion('ashen-wastes')">
+          <!-- ── Region: The Burnt North (north) — where Matheus's village fell ── -->
+          <g class="map-region" data-region="burnt-north" onclick="selectRegion('burnt-north')">
             <path class="region-fill" d="M 200,65 L 490,58 L 500,130 L 420,160 L 300,155 L 220,130 Z"
               fill="rgba(80,60,50,0.55)" stroke="rgba(120,90,70,0.5)" stroke-width="1.5"/>
-            <text class="region-label" x="340" y="108" text-anchor="middle">The Ashen Wastes</text>
+            <text class="region-label" x="340" y="108" text-anchor="middle">The Burnt North</text>
           </g>
 
-          <!-- ── Region: Thornwall Mountains (NE) ── -->
-          <g class="map-region" data-region="thornwall" onclick="selectRegion('thornwall')">
+          <!-- ── Region: Seraphys (NE) — Council of Shadows headquarters ── -->
+          <g class="map-region" data-region="seraphys" onclick="selectRegion('seraphys')">
             <path class="region-fill" d="M 500,58 L 680,55 L 710,140 L 660,180 L 590,160 L 500,130 Z"
-              fill="rgba(50,55,70,0.7)" stroke="rgba(90,100,130,0.5)" stroke-width="1.5"/>
-            <!-- Mountain symbols -->
-            <polygon points="560,90 540,120 580,120" fill="rgba(100,110,140,0.4)" stroke="rgba(140,150,180,0.3)" stroke-width="0.5"/>
-            <polygon points="600,80 580,115 620,115" fill="rgba(100,110,140,0.4)" stroke="rgba(140,150,180,0.3)" stroke-width="0.5"/>
-            <polygon points="640,95 620,125 660,125" fill="rgba(100,110,140,0.4)" stroke="rgba(140,150,180,0.3)" stroke-width="0.5"/>
-            <text class="region-label" x="600" y="150" text-anchor="middle">Thornwall Mts.</text>
+              fill="rgba(50,20,55,0.75)" stroke="rgba(110,40,90,0.6)" stroke-width="1.5"/>
+            <!-- Dragon-rose symbol -->
+            <polygon points="580,90 560,120 600,120" fill="rgba(150,40,80,0.4)" stroke="rgba(180,60,100,0.4)" stroke-width="0.5"/>
+            <polygon points="615,82 595,115 635,115" fill="rgba(150,40,80,0.4)" stroke="rgba(180,60,100,0.4)" stroke-width="0.5"/>
+            <polygon points="648,95 628,125 668,125" fill="rgba(150,40,80,0.4)" stroke="rgba(180,60,100,0.4)" stroke-width="0.5"/>
+            <text class="region-label" x="600" y="150" text-anchor="middle">Seraphys</text>
           </g>
 
-          <!-- ── Region: The Hollow Forests (W) ── -->
-          <g class="map-region" data-region="hollow-forests" onclick="selectRegion('hollow-forests')">
+          <!-- ── Region: Velkaen Grove (W) — ancient forest, field mission site ── -->
+          <g class="map-region" data-region="velkaen-grove" onclick="selectRegion('velkaen-grove')">
             <path class="region-fill" d="M 105,190 L 220,130 L 280,200 L 230,290 L 150,310 L 105,270 Z"
               fill="rgba(30,60,35,0.65)" stroke="rgba(50,100,55,0.5)" stroke-width="1.5"/>
             <!-- Tree symbols -->
@@ -876,54 +877,54 @@
             <ellipse cx="150" cy="215" rx="8" ry="10" fill="rgba(40,80,30,0.5)"/>
             <line x1="175" y1="230" x2="175" y2="248" stroke="rgba(60,100,50,0.5)" stroke-width="1"/>
             <ellipse cx="175" cy="224" rx="8" ry="10" fill="rgba(40,80,30,0.5)"/>
-            <text class="region-label" x="175" y="275" text-anchor="middle">Hollow Forests</text>
+            <text class="region-label" x="175" y="275" text-anchor="middle">Velkaen Grove</text>
           </g>
 
-          <!-- ── Region: The Shattered Citadel (center-N) ── -->
-          <g class="map-region" data-region="shattered-citadel" onclick="selectRegion('shattered-citadel')">
+          <!-- ── Region: Zyleria (center-N) — the Sage College city ── -->
+          <g class="map-region" data-region="zyleria" onclick="selectRegion('zyleria')">
             <path class="region-fill" d="M 300,155 L 420,160 L 430,230 L 380,260 L 300,250 L 270,210 Z"
-              fill="rgba(70,40,80,0.7)" stroke="rgba(110,60,130,0.6)" stroke-width="1.5"/>
-            <!-- Citadel symbol -->
-            <rect x="345" y="190" width="10" height="18" fill="rgba(130,70,160,0.5)"/>
-            <rect x="360" y="186" width="10" height="22" fill="rgba(130,70,160,0.5)"/>
-            <rect x="375" y="190" width="10" height="18" fill="rgba(130,70,160,0.5)"/>
-            <line x1="340" y1="208" x2="390" y2="208" stroke="rgba(130,70,160,0.4)" stroke-width="1"/>
-            <text class="region-label" x="355" y="235" text-anchor="middle">Shattered Citadel</text>
+              fill="rgba(40,60,100,0.75)" stroke="rgba(80,110,180,0.6)" stroke-width="1.5"/>
+            <!-- College spire symbols -->
+            <rect x="345" y="190" width="10" height="18" fill="rgba(100,140,200,0.5)"/>
+            <rect x="360" y="186" width="10" height="22" fill="rgba(100,140,200,0.5)"/>
+            <rect x="375" y="190" width="10" height="18" fill="rgba(100,140,200,0.5)"/>
+            <line x1="340" y1="208" x2="390" y2="208" stroke="rgba(100,140,200,0.4)" stroke-width="1"/>
+            <text class="region-label" x="355" y="235" text-anchor="middle">Zyleria</text>
           </g>
 
-          <!-- ── Region: The Veilgate (center) ── -->
-          <g class="map-region" data-region="veilgate" onclick="selectRegion('veilgate')">
+          <!-- ── Region: The Silent Orchard (center) — Council shaping ground ── -->
+          <g class="map-region" data-region="silent-orchard" onclick="selectRegion('silent-orchard')">
             <path class="region-fill" d="M 270,210 L 380,260 L 400,340 L 320,370 L 240,330 L 220,260 Z"
-              fill="rgba(60,30,100,0.8)" stroke="rgba(102,51,170,0.7)" stroke-width="2"/>
-            <!-- Veil glow -->
-            <ellipse cx="320" cy="295" rx="30" ry="35" fill="rgba(102,51,170,0.2)" filter="url(#region-glow)"/>
-            <ellipse cx="320" cy="295" rx="12" ry="14" fill="rgba(130,70,200,0.4)"/>
-            <text class="region-label" x="320" y="340" text-anchor="middle">The Veilgate</text>
+              fill="rgba(60,20,60,0.85)" stroke="rgba(130,40,100,0.7)" stroke-width="2"/>
+            <!-- Ominous glow -->
+            <ellipse cx="320" cy="295" rx="30" ry="35" fill="rgba(130,20,80,0.15)" filter="url(#region-glow)"/>
+            <ellipse cx="320" cy="295" rx="12" ry="14" fill="rgba(150,40,100,0.35)"/>
+            <text class="region-label" x="320" y="340" text-anchor="middle">The Silent Orchard</text>
           </g>
 
-          <!-- ── Region: The Umbral Depths (E) ── -->
-          <g class="map-region" data-region="umbral-depths" onclick="selectRegion('umbral-depths')">
+          <!-- ── Region: The Eastern Territories (E) — Sentinel patrols ── -->
+          <g class="map-region" data-region="eastern-territories" onclick="selectRegion('eastern-territories')">
             <path class="region-fill" d="M 490,170 L 660,180 L 680,320 L 590,360 L 480,320 L 460,230 Z"
-              fill="rgba(20,15,40,0.85)" stroke="rgba(60,40,100,0.5)" stroke-width="1.5"/>
-            <!-- Depth symbol -->
-            <circle cx="570" cy="260" r="20" fill="none" stroke="rgba(60,30,80,0.6)" stroke-width="1"/>
-            <circle cx="570" cy="260" r="12" fill="none" stroke="rgba(80,40,110,0.5)" stroke-width="1"/>
-            <circle cx="570" cy="260" r="5" fill="rgba(60,20,80,0.7)"/>
-            <text class="region-label" x="570" y="310" text-anchor="middle">Umbral Depths</text>
+              fill="rgba(25,20,40,0.85)" stroke="rgba(70,50,110,0.5)" stroke-width="1.5"/>
+            <!-- Sentinel symbol -->
+            <circle cx="570" cy="260" r="20" fill="none" stroke="rgba(80,50,110,0.6)" stroke-width="1"/>
+            <circle cx="570" cy="260" r="12" fill="none" stroke="rgba(100,60,140,0.5)" stroke-width="1"/>
+            <circle cx="570" cy="260" r="5" fill="rgba(80,30,100,0.7)"/>
+            <text class="region-label" x="570" y="310" text-anchor="middle">Eastern Territories</text>
           </g>
 
-          <!-- ── Region: The Sunken Coast (S) ── -->
-          <g class="map-region" data-region="sunken-coast" onclick="selectRegion('sunken-coast')">
+          <!-- ── Region: The Brynn Lowlands (S) — Umbraclaw territory ── -->
+          <g class="map-region" data-region="brynn-lowlands" onclick="selectRegion('brynn-lowlands')">
             <path class="region-fill" d="M 200,360 L 340,380 L 430,360 L 480,380 L 560,360 L 580,420 L 440,450 L 290,445 L 180,420 Z"
-              fill="rgba(25,40,65,0.7)" stroke="rgba(40,70,110,0.5)" stroke-width="1.5"/>
-            <text class="region-label" x="380" y="415" text-anchor="middle">The Sunken Coast</text>
+              fill="rgba(30,45,30,0.7)" stroke="rgba(50,80,50,0.5)" stroke-width="1.5"/>
+            <text class="region-label" x="380" y="415" text-anchor="middle">Brynn Lowlands</text>
           </g>
 
-          <!-- ── Region: Wraithmoor (SW) ── -->
-          <g class="map-region" data-region="wraithmoor" onclick="selectRegion('wraithmoor')">
+          <!-- ── Region: The Forgotten Shore (SW) — beyond Sentinel reach ── -->
+          <g class="map-region" data-region="forgotten-shore" onclick="selectRegion('forgotten-shore')">
             <path class="region-fill" d="M 105,270 L 200,360 L 190,420 L 130,410 L 100,360 L 98,300 Z"
-              fill="rgba(35,30,45,0.75)" stroke="rgba(70,60,90,0.5)" stroke-width="1.5"/>
-            <text class="region-label" x="145" y="355" text-anchor="middle">Wraithmoor</text>
+              fill="rgba(30,28,40,0.75)" stroke="rgba(65,55,85,0.5)" stroke-width="1.5"/>
+            <text class="region-label" x="145" y="355" text-anchor="middle">Forgotten Shore</text>
           </g>
 
           <!-- Compass rose -->
@@ -971,10 +972,10 @@
   <div class="quote-block fade-up">
     <span class="quote-mark">"</span>
     <p class="quote-text">
-      The Veil does not separate the living from the dead. It separates those who know the truth
-      from those who are still permitted to pretend.
+      Knowledge needs no gods. It belongs to no one. Not to a crown, not to a faith,
+      not even to us. The moment you decide it belongs to you — that is the moment it begins to rot.
     </p>
-    <p class="quote-attr">— Seraphel the Unbound, First Warden of the Veilgate</p>
+    <p class="quote-attr">— Mirthas, The First Who Saw Without the Veil, founder of the Sages of Zyleria</p>
   </div>
 </section>
 
@@ -982,8 +983,8 @@
 <section id="lore-section">
   <div class="container">
     <div class="section-header fade-up">
-      <p class="section-eyebrow">The Veilbound Codex</p>
-      <h2 class="section-title">Lore Encyclopedia</h2>
+      <p class="section-eyebrow">Ashes of Obedience — Book I</p>
+      <h2 class="section-title">The Codex of the Veil</h2>
       <div class="section-divider"></div>
     </div>
 
@@ -996,6 +997,7 @@
       </div>
       <div class="filter-tabs">
         <button class="filter-tab active" data-cat="all" onclick="setCategory('all', this)">All</button>
+        <button class="filter-tab" data-cat="character" onclick="setCategory('character', this)">Characters</button>
         <button class="filter-tab" data-cat="location" onclick="setCategory('location', this)">Locations</button>
         <button class="filter-tab" data-cat="faction" onclick="setCategory('faction', this)">Factions</button>
         <button class="filter-tab" data-cat="magic" onclick="setCategory('magic', this)">Magic</button>
@@ -1011,7 +1013,7 @@
 <!-- ── Footer ── -->
 <footer>
   <p class="footer-logo">The Chronicles of the Veil</p>
-  <p class="footer-sub">A living universe beyond the threshold of shadow.</p>
+  <p class="footer-sub">Ashes of Obedience — Book I of The Chronicles of the Veil</p>
 </footer>
 
 <!-- ── Lore Modal ── -->
@@ -1078,92 +1080,92 @@ window.addEventListener('scroll', () => {
 
 // ── World Map Data ──
 const regionData = {
-  'ashen-wastes': {
-    name: 'The Ashen Wastes',
-    tag: 'Blighted Landscape',
-    desc: 'Once fertile plains that were scorched during the First Sundering — a catastrophic ritual that tore a hole in the Veil three centuries ago. The land remains barren, coated in pale grey ash that never settles, driven by winds that carry whispers of the dead. Nomadic survivors called the Cinder Wanderers roam its edges.',
+  'burnt-north': {
+    name: 'The Burnt North',
+    tag: 'Scorched Borderlands',
+    desc: 'Blackened farmland and ash-dusted villages mark the edge of the known world. This is where the Council of Shadows tests its reach — where settlements vanish overnight and no one official asks too many questions. Matheus\'s village was here. It is not anymore.',
     stats: [
-      ['Climate', 'Perpetual ashfall'],
-      ['Danger Level', 'High'],
-      ['Notable Feature', 'The Scar of the First Sundering'],
-      ['Inhabitants', 'Cinder Wanderers, Shade remnants'],
+      ['Status', 'Partially abandoned'],
+      ['Controlled By', 'Disputed / Council influence'],
+      ['Notable Hazard', 'Council patrols, primordial disturbances'],
+      ['Inhabitants', 'Scattered survivors, Sentinel outposts'],
     ]
   },
-  'thornwall': {
-    name: 'The Thornwall Mountains',
-    tag: 'Impassable Range',
-    desc: 'A jagged mountain range forming the northeastern border of the known world. The peaks are wrapped in black ice year-round, and ancient fortifications — older than any living kingdom — dot the passes. Only the Ironbound Covenant knows the safe routes through.',
+  'seraphys': {
+    name: 'Seraphys',
+    tag: 'Seat of the Council of Shadows',
+    desc: 'A city of spires and silence, built on the premise that faith is not a comfort but an obligation. The Council of Shadows rules here through its hierarchy of Priests, Sentinels, Pale Scribes, and Silent Judges. Their mark — a dragon intertwined with a rose — flies above every gate. Newcomers are watched. Doubters are not seen again.',
     stats: [
-      ['Climate', 'Arctic, perpetual blizzards'],
-      ['Danger Level', 'Extreme'],
-      ['Notable Feature', 'The Gate of Ruin (sealed pass)'],
-      ['Inhabitants', 'Ironbound Covenant, Stone Wraiths'],
+      ['Controlled By', 'The Council of Shadows'],
+      ['Hierarchy', 'Priests → Sentinels → Pale Scribes → Silent Judges'],
+      ['Symbol', 'Dragon intertwined with a rose'],
+      ['Faith', 'The Church of the Five'],
     ]
   },
-  'hollow-forests': {
-    name: 'The Hollow Forests',
-    tag: 'Cursed Woodland',
-    desc: 'Ancient trees that have grown hollow from the inside out, their bark blackened and their roots drinking from underground streams tainted by Veil-energy. Travellers who stray from the known paths often vanish. The Thornwhisper Druids tend to the forest and keep an uneasy balance with the entities within.',
+  'velkaen-grove': {
+    name: 'Velkaen Grove',
+    tag: 'Ancient Forest — Active Assignment',
+    desc: 'A dense, old-growth forest that the Sages have been monitoring for anomalous Veil activity. The trees are older than the Third Reckoning. The Field Operations division has dispatched Matheus here — over his objections and under Calder\'s quiet authority. Something in the grove is waking up.',
     stats: [
-      ['Climate', 'Dim, mist-laden'],
-      ['Danger Level', 'Moderate to High'],
-      ['Notable Feature', 'The Heart Tree (living Veil anchor)'],
-      ['Inhabitants', 'Thornwhisper Druids, Lost Ones'],
+      ['Status', 'Under Sage surveillance'],
+      ['Assigned Field Agent', 'Matheus (current)'],
+      ['Reported Activity', 'Veil-energy convergence, primordial disturbance'],
+      ['Danger Level', 'Assessed: Moderate. Actual: Unknown'],
     ]
   },
-  'shattered-citadel': {
-    name: 'The Shattered Citadel',
-    tag: 'Fallen Stronghold',
-    desc: 'The ruins of the Veilwarden High Seat, destroyed during the Betrayal of the Unbound. Its stones float at impossible angles, suspended by residual magic. The Umbral Court now claims the ruins as sacred ground, and the ghost of the last Archwardens is said to still walk its broken halls.',
+  'zyleria': {
+    name: 'Zyleria',
+    tag: 'The Sage College — City of Knowledge',
+    desc: 'Carved from living mountain rock across centuries, Zyleria is the seat of the Sages — the order founded on the principle that knowledge needs no gods. The Great Sage College dominates the city: its Applied Mechanics lab, the Great Brianus Library, and Alaric\'s circular lecture hall with its walls of contested diagrams etched in stone. The city smells of burnt copper, parchment, and something faintly wrong.',
     stats: [
-      ['Climate', 'Unnaturally still'],
-      ['Danger Level', 'Extreme'],
-      ['Notable Feature', 'The Floating Throne Hall'],
-      ['Inhabitants', 'Umbral Court remnants, Arcane Hauntings'],
+      ['Founded By', 'Mirthas, the First Who Saw Without the Veil'],
+      ['Governing Body', 'The Sage Assembly'],
+      ['Notable Site', 'Great Brianus Library, the Applied Mechanics Lab'],
+      ['Notable Resident', 'Alaric (Sage, older than he appears)'],
     ]
   },
-  'veilgate': {
-    name: 'The Veilgate',
-    tag: 'Threshold of Worlds',
-    desc: 'The most sacred and feared location in the known world. A permanent tear in reality where the mortal plane and the Veil overlap completely. The air shimmers with violet light and the laws of physics become suggestions. No army has ever crossed through its center and returned intact.',
+  'silent-orchard': {
+    name: 'The Silent Orchard',
+    tag: 'Council Shaping Ground',
+    desc: 'A place whose name the Council does not speak aloud except when necessary. The Orchard is where faith-vessels are shaped — where obedience is not asked for but constructed, layer by layer, in the dark. Selma has been here. What was done to her there, she understands only partially. What it cost her, she will not know until it is too late.',
     stats: [
-      ['Climate', 'Reality-unstable'],
-      ['Danger Level', 'Divine'],
-      ['Notable Feature', 'The Threshold Arch (permanent tear)'],
-      ['Inhabitants', 'Veilborn entities, Seraphel\'s Echo'],
+      ['Controlled By', 'Council of Shadows (restricted)'],
+      ['Purpose', 'Conditioning of faith-vessels'],
+      ['Entry', 'By Council authority only'],
+      ['Known Survivors', 'Selma (current vessel)'],
     ]
   },
-  'umbral-depths': {
-    name: 'The Umbral Depths',
-    tag: 'Sunless Territory',
-    desc: 'A vast subterranean network of caverns and tunnels that the sun has never touched. The Depths stretch beneath the eastern lands and are home to entire civilizations that evolved in total darkness. The Umbral Court was born here, worshipping the dark as a living god called the Unlit.',
+  'eastern-territories': {
+    name: 'Eastern Territories',
+    tag: 'Sentinel-Patrolled Lands',
+    desc: 'Vast plains and scattered towns under the silent authority of the Council\'s Sentinels — the armed arm of the faith. The Sentinels do not announce themselves. They arrive, they observe, and sometimes they act. Trade continues here. Worship is compulsory. Questions about the Church of the Five are not encouraged.',
     stats: [
-      ['Climate', 'Total darkness, cold'],
-      ['Danger Level', 'Extreme'],
-      ['Notable Feature', 'The Cathedral of the Unlit'],
-      ['Inhabitants', 'Umbral Court, Depth-Dwellers, Veilborn'],
+      ['Controlled By', 'Church of the Five (via Council)'],
+      ['Security', 'Sentinel patrols, Pale Scribe monitoring'],
+      ['Worship', 'Mandatory; monitored'],
+      ['Dissent Policy', 'Silent Judges are dispatched'],
     ]
   },
-  'sunken-coast': {
-    name: 'The Sunken Coast',
-    tag: 'Drowned Shores',
-    desc: 'A coastline where entire cities have sunk beneath the tidal waters over centuries of creeping sea-rise caused by Veil corruption in the deep ocean. The ruins beneath the waves are still inhabited — by things that do not need air to survive. Trade ships cross these waters quickly and never anchor overnight.',
+  'brynn-lowlands': {
+    name: 'Brynn Lowlands',
+    tag: 'Contested — Primordial Activity',
+    desc: 'Low-lying farmland and river settlements that sit on a convergence of ley lines. The settlement of Brynn was attacked by something that came from the old forest at dusk — something pre-Reckoning, pre-civilisation, older than any catalogue entry. It looked, according to the one surviving witness, like the trees were walking. It responds to magic. It grows stronger when magic is used near it.',
     stats: [
-      ['Climate', 'Stormy, perpetual fog'],
-      ['Danger Level', 'High'],
-      ['Notable Feature', 'The Drowned Throne (submerged palace)'],
-      ['Inhabitants', 'Sea-touched, Veilfish, Ghost ships'],
+      ['Status', 'Settlement of Brynn: destroyed'],
+      ['Threat Type', 'Primordial entity (unclassified)'],
+      ['Threat Characteristic', 'Absorbs Veil energy; amplified by magic use'],
+      ['Sage Response', 'Field mission dispatched'],
     ]
   },
-  'wraithmoor': {
-    name: 'Wraithmoor',
-    tag: 'Haunted Wetlands',
-    desc: 'A fog-choked bog where the boundary between the living and the dead is razor-thin. Souls of the recent dead linger here for years before passing fully into the Veil, creating a landscape of confused, drifting wraiths. The Mourncallers — grief-touched priests — minister to the lost souls and guide them through.',
+  'forgotten-shore': {
+    name: 'The Forgotten Shore',
+    tag: 'Beyond Reach',
+    desc: 'A coastline that does not appear on official maps produced by the Council or the Church. The Sages have records of it — fragmentary, contested, three centuries out of date. Ships that sail too far south return with gaps in their crew\'s memory. The island mentioned in the founding story of the Church of the Five was, according to those records, somewhere in these waters. No one has found it again.',
     stats: [
-      ['Climate', 'Dense fog, perpetual twilight'],
-      ['Danger Level', 'Moderate'],
-      ['Notable Feature', 'The Pool of Remembrance'],
-      ['Inhabitants', 'Mourncallers, Wraiths, lingering dead'],
+      ['Charted By', 'Sage archive (restricted, outdated)'],
+      ['Church Position', 'Does not officially exist'],
+      ['Historical Significance', 'Possible site of the founding island'],
+      ['Navigation', 'Hazardous; records inconsistent'],
     ]
   }
 };
@@ -1209,114 +1211,155 @@ function selectRegion(id) {
 
 // ── Lore Data ──
 const loreEntries = [
-  // Locations
+  // Characters
   {
-    id: 'veilgate-lore', category: 'location', title: 'The Veilgate',
-    excerpt: 'The permanent tear in reality where two worlds bleed into one. No map can accurately show its boundaries — they shift.',
-    dangerClass: 'tag-divine', dangerLabel: 'Divine Threat',
-    overview: 'The Veilgate is the oldest recorded anomaly in the known world, predating the founding of the first kingdom by at least two millennia. It manifests as a shimmering violet rift approximately a quarter-league across, suspended between two basalt pillars known as the Threshold Arch.',
-    lore: 'Ancient texts of the Veilwardens describe the Gate as a wound that the world inflicted upon itself — a consequence of the first mortal who attempted to command death rather than accept it. The Gate breathes: at dawn it pulses outward, at dusk it contracts. Creatures pass through it involuntarily during these pulse-moments, pulled from the Veil into the mortal world or dragged back in. No mortal sorcery has succeeded in closing or widening the Gate permanently.',
-    meta: [['Also Known As', 'The Threshold / The Mouth'], ['First Recorded', 'Pre-Sundering Era'], ['Status', 'Active / Unstable'], ['Controlled By', 'No faction (contested)']]
+    id: 'matheus', category: 'character', title: 'Matheus',
+    excerpt: 'His village burned. He was given books and told to carry knowledge. He feels like a fool for believing he can make a difference. He is the knowledge-vessel. He does not know that yet.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Protagonist',
+    overview: 'Matheus is a young man from a northern village that no longer exists. He arrived at the Sage College in Zyleria as a newcomer — outsider enough to notice everything, inexperienced enough to say what he sees aloud. He has dark brown eyes and the habit of craning his neck back at grand architecture as if trying to take all of it in at once. He is studying under Alaric. He does not yet know what he is.',
+    lore: 'Matheus carries a medallion — a rose coiled around a flame — that he inherited from his family. He has been sent to Velkaen Grove by Calder, head of Field Operations, as a field assignment he did not choose. He has encountered an Umbraclaw and survived. He has found a hidden chamber beneath Zyleria\'s western lecture hall that responded to his blood before he understood what was happening. He is the knowledge-vessel of the ancient bloodline — one of only two people in this Era capable of ending the gods\' hold on the world. The other is being shaped, right now, to stop him.',
+    meta: [['Role', 'Knowledge-vessel (does not yet know)'], ['Affiliation', 'Sages of Zyleria (student)'], ['Mentor', 'Alaric'], ['Medallion', 'Rose coiled around a flame']]
   },
   {
-    id: 'ashen-wastes-lore', category: 'location', title: 'The Ashen Wastes',
-    excerpt: 'Scorched plains where the First Sundering tore the earth apart. The ash does not settle. The whispers do not stop.',
-    dangerClass: 'tag-high', dangerLabel: 'High Threat',
-    overview: 'The Ashen Wastes cover roughly three hundred square leagues of the northern continent. Before the First Sundering, these lands were the breadbasket of the old empire, producing grain and livestock for millions.',
-    lore: 'The Sundering was triggered when a cabal of rogue Veilweavers attempted to forcibly merge the mortal plane with the Veil to achieve immortality. Their ritual succeeded — and failed — simultaneously. They achieved a merging, but not the controlled kind they sought. The explosion of Veil energy incinerated the land in seconds and catapulted their souls into the Veil where they remain, unable to die and unable to rest. The Cinder Wanderers who now inhabit the edges are descendants of survivors, culturally adapted to life under constant ashfall.',
-    meta: [['Size', '~300 square leagues'], ['Origin', 'First Sundering (3 centuries ago)'], ['Danger Level', 'High'], ['Primary Hazard', 'Shade remnants, ash-tides']]
+    id: 'selma', category: 'character', title: 'Selma',
+    excerpt: 'She is the faith-vessel. She chose obedience — in the way that someone can choose something when all the other options have been quietly removed. She is sincere. That is what makes it tragic.',
+    dangerClass: 'tag-high', dangerLabel: 'Antagonist (Tragic)',
+    overview: 'Selma is the faith-vessel of the ancient bloodline — the Council of Shadows\' instrument against the knowledge-vessel. She has passed through the Silent Orchard. She has been shaped. She chose obedience sincerely, believing she was right. She does not fully know what she was before. She will understand the real truth only at the very end, too late.',
+    lore: 'Selma\'s arc is the other half of the tragedy the reader assembles in pieces. She learns the faith half of the truth: that she is chosen, what obedience demands, and what damnation costs. She comes to believe, sincerely, that obedience is righteous. She will oppose Matheus not out of malice but out of genuine conviction — the most dangerous possible motivation. What she does not know is that the faith she defends requires belief to survive, that the gods she protects are parasites, and that the "damnation" she fears is a story told to keep her obedient. She will choose correctly within the worldview she has been given. That worldview is wrong.',
+    meta: [['Role', 'Faith-vessel (knows she is chosen; does not know the full truth)'], ['Affiliation', 'Council of Shadows'], ['Shaped By', 'The Silent Orchard'], ['Relationship to Matheus', 'Same ancient bloodline; opposite orientation']]
+  },
+  {
+    id: 'alaric', category: 'character', title: 'Alaric',
+    excerpt: 'He is older than he appears. He is older than the gods. He has been waiting for this Era for a very long time. He has still not told Matheus everything — because what is told and what is known are different things.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Ancient; Alignment Unclear',
+    overview: 'Alaric is a Sage at Zyleria\'s college — or, rather, he occupies the role of Sage at Zyleria\'s college. He was born with the world itself. He remembers a time before the gods arrived. His circular lecture hall has diagrams etched in stone across centuries; he has added to many of them himself, in handwriting that post-dates the first session by what would be impossible if he were an ordinary man. He starts exactly when he says he will. His lessons always end one sentence before the part Matheus needed.',
+    lore: 'Alaric has shepherded the vessel bloodline across every Era, trying to engineer the one cycle in which a knowledge-vessel finally ends the gods. He gets a little closer every Era. In this Era, Matheus is the closest he has come. He does not withhold information from Matheus because he is cruel. He withholds it because he has learned, across many Eras of failure, that Matheus must arrive at certain truths himself. This is either the accumulated wisdom of an impossibly old being or the arrogance of one who has stopped asking whether his strategy is right. It is probably both.',
+    meta: [['True Nature', 'Primordial being; born with the world; older than the gods'], ['Role', 'Sage lecturer; Matheus\'s mentor'], ['Purpose', 'Has engineered the vessel bloodline toward this moment across every Era'], ['Teaching Method', 'Lessons that end one sentence before the part you needed']]
+  },
+  {
+    id: 'mirthas', category: 'character', title: 'Mirthas — The First Who Saw Without the Veil',
+    excerpt: '"Knowledge needs no gods. It belongs to no one." He built everything the Sages are on a single idea. He is long dead. His tomb is in Zyleria. His principle outlived him by a very long time.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Historical Figure',
+    overview: 'Mirthas was the founder of the Sages of Zyleria. He was the first human to perceive reality without the gods\' deception — to see the Veil clearly, to understand what the gods were, and to build an institution dedicated to the possibility that knowledge could exist without divine sanction. His tomb is in Zyleria. His principle — "knowledge needs no gods, belongs to no one" — is carved above every archive entrance.',
+    lore: 'Mirthas did not found the Sages as a political organization. He founded them as a philosophical one. The politics came later, imported by necessity, resented by the scholars who understood what he had actually meant. The library he built preserves everything, including the arguments against him, including the Church\'s founding texts, including the records that a careful reader could use to understand what the gods actually are. He built the institution trusting the reader. Whether that trust was naive or visionary is the debate that has not been resolved in the centuries since his death.',
+    meta: [['Title', '"The First Who Saw Without the Veil"'], ['Status', 'Dead; tomb located in Zyleria'], ['Founding Principle', '"Knowledge needs no gods, belongs to no one"'], ['Legacy', 'The Sages; the Great Brianus Library; the principle of preserving everything']]
+  },
+  // Locations
+  {
+    id: 'zyleria-lore', category: 'location', title: 'Zyleria — The Sage College',
+    excerpt: 'A city carved from mountain rock by centuries of careful scholarship. It smells of burnt copper, old parchment, and faintly of something wrong.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Politically Complex',
+    overview: 'Zyleria is the seat of the Sages, the oldest scholarly order in the known world. Founded by Mirthas — the First Who Saw Without the Veil — on the principle that knowledge belongs to no one, the city has grown over centuries into a labyrinthine institution of learning, politics, and carefully maintained neutrality. Its great college is carved from the living rock of the mountain it inhabits, its corridors lined with diagrams and notation systems that argue with each other across centuries.',
+    lore: 'The college is organized around three pillars: the Great Brianus Library (which preserves everything — the true, the false, and the dangerous), the Applied Mechanics Lab (where Veil-channelling devices are built, studied, and occasionally catastrophically failed), and the lecture halls, most notably Alaric\'s circular stone room whose walls are covered floor to ceiling in diagrams of the Veil — each revision preserved in stone, each disagreement between scholars visible in the changing handwriting. The Sages revere Elyndra, goddess of occult knowledge, as a symbol only — a deliberate philosophical needle in the eye of the Council of Shadows. The Assembly governs the college through a politics that Matheus is only beginning to understand, and which is colder than it first appears.',
+    meta: [['Founded By', 'Mirthas (exact date unknown)'], ['Governing Body', 'The Sage Assembly'], ['Primary Principle', '"Knowledge needs no gods, belongs to no one"'], ['Notable Residents', 'Alaric, Calder (Field Operations), Selvin, Lyra']]
+  },
+  {
+    id: 'silent-orchard-lore', category: 'location', title: 'The Silent Orchard',
+    excerpt: 'The Council does not explain what happens here. Those who enter as candidates do not leave as the same people. Selma has been here. She does not speak of it.',
+    dangerClass: 'tag-extreme', dangerLabel: 'Extreme — Do Not Enter',
+    overview: 'The Silent Orchard is the Council of Shadows\' most closely guarded facility. Its name is not spoken in public Council communications. Access is restricted to high-ranking Priests and their designated candidates. From the outside it appears to be an administrative compound. From the inside, it is where faith-vessels are shaped.',
+    lore: 'The shaping process is not torture in any conventional sense. It is subtler than that. It works on the assumption — correct, the Council believes — that obedience is not a natural state for a vessel of the old blood, and that it must therefore be constructed. Layer by layer. The self is not destroyed; it is redirected. The candidate emerges believing, sincerely, that what was done to them was for their protection. Selma has been through the Orchard. She chose it, in the way that a person can choose something when all the other options have been quietly removed. She is aware of what she is. She is not fully aware of what she was before.',
+    meta: [['Controlled By', 'Council of Shadows (Senior Priests only)'], ['Known Purpose', 'Conditioning of faith-vessels'], ['Duration of Process', 'Months to years (case-dependent)'], ['Notable Subjects', 'Selma (current faith-vessel)']]
+  },
+  {
+    id: 'seraphys-lore', category: 'location', title: 'Seraphys',
+    excerpt: 'A city of black spires and silence. Worship is not optional here. The Council of Shadows built this city to ensure it never has to be.',
+    dangerClass: 'tag-high', dangerLabel: 'High — Political Danger',
+    overview: 'Seraphys is the administrative heart of the Council of Shadows and the practical center of the Church of the Five\'s power in the known world. Built over centuries as the Council consolidated its influence, the city is simultaneously beautiful and oppressive — its architecture is extraordinary, its silences pointed, and its hospitality contingent on one\'s visible devotion.',
+    lore: 'The Council\'s hierarchy in Seraphys moves in descending circles of power: Priests and Priestesses handle public faith, Sentinels enforce it, Pale Scribes record everything and answer to no one below Silent Judge rank, and the Silent Judges — whose faces no one outside the Council\'s inner circle has seen — resolve what cannot be resolved by lesser means. The mark of the Council — a dragon intertwined with a rose — appears on every official gate. The rose, notably, also appears on Matheus\'s medallion, an inheritance he does not yet understand.',
+    meta: [['Controlled By', 'The Council of Shadows'], ['Symbol', 'Dragon intertwined with a rose'], ['Church Affiliation', 'Church of the Five'], ['Hierarchy', 'Priests → Sentinels → Pale Scribes → Silent Judges']]
   },
   // Factions
   {
-    id: 'veilwardens', category: 'faction', title: 'The Veilwardens',
-    excerpt: 'Ancient guardians sworn to contain the Veil. Their order is three millennia old, their numbers dwindling, their secrets absolute.',
-    dangerClass: 'tag-unknown', dangerLabel: 'Neutral',
-    overview: 'The Veilwardens are the oldest surviving organization in the known world, founded in the age before recorded history by an entity known only as "the First Warden." Their mandate is singular: monitor, contain, and when necessary, seal breaches in the Veil.',
-    lore: 'The Wardens operate from a principle called the Doctrine of Minimum Intervention — they believe any tampering with the Veil beyond containment accelerates its instability. This has put them in perpetual conflict with the Umbral Court (who worship it) and independent Veilweavers (who exploit it). The Wardens keep no written records of their true membership; their hierarchy is entirely oral and memorized. At any given time, no more than forty Wardens exist. When one dies, another is chosen through a ritual called the Sounding.',
-    meta: [['Founded', 'Pre-Sundering Era'], ['Size', 'Max 40 members'], ['Headquarters', 'Shifting / secret'], ['Allegiance', 'The Veil\'s stability']]
+    id: 'sages-faction', category: 'faction', title: 'The Sages of Zyleria',
+    excerpt: 'Founded on the principle that knowledge needs no gods. Cold utilitarians who will spend lives to preserve what they believe matters. They are not the heroes of this story. Neither is anyone else.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Morally Ambiguous',
+    overview: 'The Sages are the oldest surviving scholarly order in the known world, founded by Mirthas on the radical principle that knowledge belongs to no one — not to a god, not to a crown, not even to those who possess it. They preserve everything: the true, the false, and the dangerous, and trust the reader to find out which is which.',
+    lore: 'The Sages\' virtue is real: they do not burn what they do not like. Their library holds the history of the Church of the Five alongside the arguments against it. Their flaw is equally real: they are cold, arrogant, and willing to treat people as means to the preservation of knowledge. Calder — head of Field Operations — hasn\'t slept more than four hours a night in twenty years because he has decided he is necessary, and the Assembly has never told him otherwise. He sent Matheus to Velkaen Grove the way someone disposes of an inconvenience, and he was right to do it, and he was also exactly as callous as Matheus thinks he is. Both of these things are true.',
+    meta: [['Founded By', 'Mirthas ("The First Who Saw Without the Veil")'], ['Headquarters', 'Zyleria'], ['Principle', '"Knowledge needs no gods, belongs to no one"'], ['Flaw', 'Cold utilitarianism; treats people as means']]
   },
   {
-    id: 'umbral-court', category: 'faction', title: 'The Umbral Court',
-    excerpt: 'A theocratic order that venerates the darkness within the Veil. They do not believe the Veil should be sealed. They believe it should swallow everything.',
-    dangerClass: 'tag-extreme', dangerLabel: 'Extreme Threat',
-    overview: 'The Umbral Court is part religious order, part militant theocracy, part apocalyptic cult. Founded in the Umbral Depths by a visionary called the First Speaker, they hold that the Veil\'s expansion is not a catastrophe to be prevented but a divine inevitability to be welcomed.',
-    lore: 'The Court operates in three tiers: the Voices (public priests and missionaries), the Fingers (covert agents and assassins), and the Hollow (their inner council, whose identities are unknown even to most Court members). Their theology holds that the Veil — which they call the Unlit — is a conscious god that was wrongfully separated from the mortal world and seeks reunion. Each breach or expansion of the Veil is considered a sacrament. They have been linked to at least four deliberate Veil-breach incidents.',
-    meta: [['Founded', '~200 years ago'], ['Size', 'Thousands (estimated)'], ['Headquarters', 'Cathedral of the Unlit, Umbral Depths'], ['Allegiance', 'The Unlit (their deity)']]
+    id: 'council-shadows', category: 'faction', title: 'The Council of Shadows',
+    excerpt: 'A hooded order whose sincerity makes them more dangerous than any cynical conspiracy. They genuinely believe they are saving the world. They are also wrong about almost everything important.',
+    dangerClass: 'tag-high', dangerLabel: 'High — Institutional Danger',
+    overview: 'The Council of Shadows is the hidden governing body behind the Church of the Five. They are not, primarily, villains by disposition. They are people — priests, administrators, faithful believers — who are convinced, with deep and genuine conviction, that the gods must be kept fed and the vessels kept obedient, because the alternative they have been told is worse. They are also, in almost every respect that matters, wrong.',
+    lore: 'The Council operates through a strict hierarchy: Priests and Priestesses handle public faith and recruitment; Sentinels are the armed and authoritative arm; Pale Scribes are the Council\'s memory, recording everything and answering only upward; Silent Judges are the final resolution to problems that cannot otherwise be solved. Their mark — a dragon intertwined with a rose — appears on every official document and gate. Their faith-vessel program, the cornerstone of their strategy, involves identifying bloodline-holders and shaping them through the Silent Orchard into instruments of the gods\' will. They have been doing this for Eras. It has always worked. Until now, almost.',
+    meta: [['Headquarters', 'Seraphys'], ['Symbol', 'Dragon intertwined with a rose'], ['Hierarchy', 'Priests → Sentinels → Pale Scribes → Silent Judges'], ['Core Strategy', 'Faith-vessel conditioning; keeping the gods\' worship sustained']]
   },
   {
-    id: 'ironbound', category: 'faction', title: 'The Ironbound Covenant',
-    excerpt: 'Mercenary-scholars who guard the Thornwall passes. They sell safe passage, maps, and silence with equal efficiency.',
-    dangerClass: 'tag-moderate', dangerLabel: 'Moderate Risk',
-    overview: 'The Ironbound Covenant controls access to the only viable passages through the Thornwall Mountains. They are simultaneously a military organization, a merchant guild, and a repository of forbidden geographical knowledge.',
-    lore: 'The Covenant\'s founders were a regiment of soldiers who discovered that the Thornwall passes were not naturally impassable — they had been sealed by an ancient civilization whose ruins still lace the mountain range. The soldiers realized the passes could be safely navigated with the right knowledge, and built their entire organization around controlling that knowledge. They are scrupulously neutral in political conflicts, operating by a code that forbids them from leveraging military access for political gain — a code they have managed to keep for two hundred years, which is itself remarkable.',
-    meta: [['Founded', '~200 years ago'], ['Size', '~2,000 members'], ['Headquarters', 'Gate-Hold, Thornwall Mts.'], ['Services', 'Mountain passage, cartography, intelligence']]
+    id: 'church-five', category: 'faction', title: 'The Church of the Five',
+    excerpt: 'Four fishermen, five gods, one island no one has found since. Half the thrones in the known world bow to this faith in private. The Sages are not sure it is entirely false.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Widespread Influence',
+    overview: 'The Church of the Five is the dominant public faith of the known world. Its founding story: four fishermen were lost at sea and washed up on an unmapped island inhabited by five beings of impossible power. The gods set the fishermen trials. On the last trial, one of the four gave his life so the others could pass. Three went home. Two founded the Church. The fifth pillar of the faith is the one who died — a sacrifice, a corpse no one can name, on an island no chart has ever shown.',
+    lore: 'The Sages hold a copy of the Church\'s founding text three levels down in the restricted archive. Selvin — Matheus\'s guide — points out the obvious gap: four fishermen and five pillars. The fifth pillar is a dead man. The whole faith is built around a corpse no one can name with certainty. Selvin does not disbelieve it; that is a different thing from not believing it. What the Sages know — and the Church does not advertise — is that the five gods are real, that they arrived after the world was made, and that they require worship to remain real. The fishermen\'s story is not necessarily false. It may just be incomplete.',
+    meta: [['Founded By', 'Two of four shipwrecked fishermen (names disputed)'], ['Governing Body', 'The Council of Shadows (hidden)'], ['Sacred Text', 'The Great Pillars of the Church of the Five'], ['Known Truth', 'The gods exist. They are not divine. They need belief to survive.']]
   },
   // Magic
   {
-    id: 'veilweaving', category: 'magic', title: 'Veilweaving',
-    excerpt: 'The art of reaching through the membrane of the Veil to borrow its energies. Useful. Addictive. Corrosive to the practitioner\'s sense of self.',
-    dangerClass: 'tag-high', dangerLabel: 'Self-Hazard: High',
-    overview: 'Veilweaving is the most widespread form of arcane practice in the known world — and the most dangerous. A Veilweaver reaches their consciousness partially into the Veil and draws out threads of its energy, shaping them into effects in the mortal world.',
-    lore: 'The fundamental problem with Veilweaving is that the Veil is not passive. Every time a Weaver reaches in, something on the other side notices. Experienced Weavers develop what\'s called a "thread-shadow" — a persistent impression left in the Veil of their specific consciousness-signature. This shadow grows with use. Eventually, beings within the Veil can follow the shadow back to the Weaver. Most Veilweavers practice deliberately limited weaving to prevent their shadow from becoming too defined. Those who push beyond these limits are called Unravellers — and most go mad within a decade.',
-    meta: [['Accessibility', 'Innate talent required'], ['Side Effects', 'Thread-shadow, identity erosion'], ['Maximum Safe Use', 'Disputed'], ['Forbidden Applications', 'Veil-tearing, soul-binding']]
+    id: 'veil-system', category: 'magic', title: 'The Veil — What It Actually Is',
+    excerpt: 'Not a membrane between life and death. Not a divine barrier. An energy system that predates the gods — which they cannot fully control and which, in the right hands, could end them.',
+    dangerClass: 'tag-high', dangerLabel: 'Existential Stakes',
+    overview: 'The Veil is a field of energy that underlies the physical world. It predates the gods — it was here before they arrived. Mortals with the right bloodline can channel it, shape it, use it to act in the world in ways that exceed ordinary physical limits. The gods\' power in the mortal world depends entirely on vessels — bloodline-holders who channel Veil energy on their behalf.',
+    lore: 'Alaric teaches the Veil the way a map shows a coastline: approximate, argued-over, revised. His circular classroom has walls covered floor to ceiling in diagrams, some so old the lines have worn to suggestions, others freshly cut. Each represents a century of scholarship, disagreement, revision. What the Sages teach is that the Veil can be channelled through careful conditioning of the practitioner. What they do not teach — what Alaric knows — is that the Veil remembers. It recognized Matheus\'s blood before Matheus recognized anything at all. The glow that rose from his hands in the hidden chamber was not Veil-light borrowed. It was something older answering something it had been waiting for.',
+    meta: [['Nature', 'Primordial energy field; predates the gods'], ['Access', 'Hereditary bloodline required for full channelling'], ['Danger: Overreach', 'Structural collapse of the primary conduit (documented: multiple fatalities)'], ['Critical Fact', 'The gods require vessel-mediated Veil energy to act in the world']]
   },
   {
-    id: 'shadowbinding', category: 'magic', title: 'Shadowbinding',
-    excerpt: 'The forbidden practice of binding Veil entities to one\'s will. The bindings always break eventually.',
-    dangerClass: 'tag-extreme', dangerLabel: 'Extreme Hazard',
-    overview: 'Shadowbinding is the practice of reaching into the Veil and compelling one of its inhabitants — a Veilborn entity — to serve in the mortal world. It is banned by every legitimate governing body and openly practiced by the Umbral Court.',
-    lore: 'The mechanism of Shadowbinding requires the practitioner to forge a resonance-link between their own life-force and the entity\'s essential nature. While the link holds, the entity is compelled. The catastrophic flaw: Veilborn do not tire, do not die, and do not forgive. Every binding has a failure point — a moment when the entity\'s will overcomes the binding — and when it breaks, the entity is free, enraged, and already bonded to the practitioner\'s life-force. Documented cases of successful Shadowbinding relationships lasting more than ten years can be counted on one hand.',
-    meta: [['Legal Status', 'Banned in all jurisdictions'], ['Risk Level', 'Practitioner mortality: ~90% within 20 years'], ['Practitioners', 'Umbral Court, rogue Weavers'], ['Known Failures', 'The Night of Unravelled Hands (records sealed)']]
+    id: 'vessel-bloodline', category: 'magic', title: 'The Vessel Bloodline',
+    excerpt: 'An ancient blood that carries two capacities: the knowledge-vessel and the faith-vessel. Every Era they are born. Every Era, one of them stops the other. Until, almost, now.',
+    dangerClass: 'tag-extreme', dangerLabel: 'Cosmological Significance',
+    overview: 'The vessel bloodline is a hereditary capacity for Veil-channelling that runs through a single ancient family line. In every Era, two vessels are born of this blood — one oriented toward knowledge, one oriented toward faith. The gods\' entire survival strategy depends on ensuring that the faith-vessel prevails over the knowledge-vessel before the knowledge-vessel can use their capacity to end the gods\' hold on the world.',
+    lore: 'Alaric has watched this play out across every Era. Each time, faith beats knowledge. The knowledge-vessel gets close — sometimes very close — and then the faith-vessel, conditioned by the Council, intervenes. It is never simple. The faith-vessel is never simply obedient. Selma chose obedience. She chose it sincerely, thinking she was right. The tragedy the reader assembles in pieces is this: Matheus and Selma are of the same blood, shaped toward opposite truths, and the collision between them is the entire history of the world replaying itself. This Era, Alaric believes, is different. He has spent a very long time engineering that difference.',
+    meta: [['Bloodline Origin', 'Ancient; predates current historical records'], ['Known Vessels', 'Matheus (knowledge), Selma (faith)'], ['Shared Symbol', 'The rose (appears in both the Council mark and Matheus\'s medallion)'], ['Alaric\'s Role', 'Has shepherded this bloodline across every Era']]
   },
   {
-    id: 'mourncalling', category: 'magic', title: 'Mourncalling',
-    excerpt: 'A gentle magic that speaks to lingering dead. The Mourncallers do not command the dead — they comfort them, and guide them onward.',
-    dangerClass: 'tag-low', dangerLabel: 'Low Risk',
-    overview: 'Mourncalling is a subdiscipline of Veilweaving practiced exclusively by the Mourncallers of Wraithmoor. Unlike other Veil-arts, Mourncalling does not take from the Veil — it speaks across it.',
-    lore: 'A Mourncaller extends a very fine, very passive thread into the Veil not to draw power but to create a channel of communication. Through this channel, they can hear the lingering impressions of recently deceased souls — not their full consciousness, but the emotional residue they leave behind. With skill and patience, a Mourncaller can interpret these impressions and determine what is keeping a soul from passing fully into the Veil. Resolution of that anchoring element — delivering a message, retrieving an object, finding a missing person — allows the soul to pass. Mourncallers have the lowest thread-shadow accumulation of any Veil practitioners.',
-    meta: [['Accessibility', 'Learned skill, rare talent'], ['Risk Level', 'Low (passive practice)'], ['Practitioners', 'Mourncallers of Wraithmoor'], ['Applications', 'Soul guidance, grief counseling, investigation']]
+    id: 'veil-overreach', category: 'magic', title: 'Overreach',
+    excerpt: 'The Applied Mechanics lab keeps the failed devices behind glass. Each card reads: two survived. Three survived. One survived. None returned intact.',
+    dangerClass: 'tag-high', dangerLabel: 'Practitioner Hazard',
+    overview: 'Overreach is the term the Sages use for any attempt to sustain a Veil channel beyond the practitioner\'s capacity ceiling. The Mechanics lab displays the documented failures in a glass-fronted case lit by amber light — each device twisted, scorched, collapsed inward on itself. Each card gives the year and the toll.',
+    lore: 'The Sages do not destroy their failures. They study them. Every device in the case worked perfectly until the moment it didn\'t. The principle behind all of it is the same: the Veil does not distinguish between the worthy and the desperate. It answers those who reach — and it takes what the reaching costs. Alaric teaches this in the first week. He teaches it again in the third. Students who think they understand it in the first week understand it differently in the third, and differently again after the first time they feel their conduit shudder and hold.',
+    meta: [['Definition', 'Veil-channelling beyond practitioner\'s capacity ceiling'], ['Result', 'Structural collapse of the primary conduit'], ['Documentation', 'Applied Mechanics Lab failure case, Zyleria'], ['Earliest Record', 'Year 388 of the Third Reckoning']]
   },
   // Creatures
   {
-    id: 'veilborn', category: 'creature', title: 'Veilborn',
-    excerpt: 'Entities native to the Veil. Not spirits, not demons — something older that predates both concepts. They are curious. They are patient. They are dangerous.',
+    id: 'umbraclaw', category: 'creature', title: 'The Umbraclaw',
+    excerpt: 'Matheus has encountered one. He survived. The comparison he draws when he meets the Ancient Sentinel is instructive: the Sentinel does not feel threatening in the way the Umbraclaw felt threatening.',
     dangerClass: 'tag-extreme', dangerLabel: 'Extreme Threat',
-    overview: 'Veilborn is the collective term for entities that originate within the Veil itself. They are not spirits of the dead, nor demons from any known mythology. They appear to be native life forms evolved within the physics of the Veil over an unknown span of time.',
-    lore: 'Veilborn do not appear to have malicious intent as a default — they are simply alien in their motivations. Their primary drive seems to be curiosity about the mortal world, which they experience as exotic and incomprehensible. The danger arises because their methods of investigation are not calibrated for mortal fragility. A Veilborn examining a mortal\'s mind out of curiosity produces the same result as a deliberate assault. They range from the small Drift-motes (harmless, drifting wisps) to the Vast — enormous presences rarely encountered directly but whose existence is inferred from the destruction left in their wake.',
-    meta: [['Origin', 'Native to the Veil'], ['Intelligence', 'Varies (Drift-mote to Vast)'], ['Threat Level', 'Context-dependent'], ['Communication', 'Possible with specialized training']]
+    overview: 'The Umbraclaw is a creature whose nature the Sages\' catalogue does not fully describe. It is understood to be dangerous — viscerally, immediately dangerous in a way that registers before thought. Matheus encountered one and survived. The details of that encounter have shaped how he responds to everything since.',
+    lore: 'What distinguishes the Umbraclaw from other threats is the quality of its menace: it is present, immediate, oriented toward the specific person in front of it. When Matheus encounters the Ancient Sentinel — a primordial entity that predates civilisation — he notices explicitly that it does not feel threatening in the way the Umbraclaw felt threatening. The Sentinel feels old. Exhausted. Patient with a patience that has cost something. The Umbraclaw felt like something that had noticed him personally. That distinction — between something ancient that endures and something predatory that hunts — is doing meaningful work in how Matheus reads what comes next.',
+    meta: [['Classification', 'Creature (full catalogue entry: restricted)'], ['Threat Character', 'Immediate, personally predatory'], ['Known Encounters', 'Matheus (survived)'], ['Comparison Baseline', 'Used by Matheus to calibrate threat assessment']]
   },
   {
-    id: 'shade-remnants', category: 'creature', title: 'Shade Remnants',
-    excerpt: 'The scorched echoes of souls caught in the First Sundering. They replay their final moments forever, unable to comprehend they are dead.',
-    dangerClass: 'tag-high', dangerLabel: 'High Threat',
-    overview: 'Shade Remnants are the most common hostile entities found in the Ashen Wastes. They are not true Veilborn — they are the incomplete impressions left when a large number of souls are simultaneously destroyed before they can properly enter the Veil.',
-    lore: 'The First Sundering killed approximately forty thousand people in seconds. The violence and speed of their deaths created a situation where their soul-impressions could not complete the transition into the Veil. They became "stuck" in a loop, experiencing their final moments of terror repeatedly. They are not fully conscious — they cannot be communicated with or reasoned with. They respond to the presence of living beings by attempting to replicate the circumstances of their own deaths upon them. Mourncallers who have entered the Wastes have described the experience as standing inside a single scream stretched across three centuries.',
-    meta: [['Origin', 'First Sundering victims'], ['Behavior', 'Repeating death-loop'], ['Location', 'Ashen Wastes (primary)'], ['Neutralization', 'Mourncalling (partial only)']]
+    id: 'primordial-entity', category: 'creature', title: 'Primordial Entities',
+    excerpt: 'Pre-Reckoning. Pre-civilisation. Possibly pre-gods. They sleep until something wakes them. Uncontrolled Veil-artefact use in a ley-line convergence zone is one way to wake them.',
+    dangerClass: 'tag-extreme', dangerLabel: 'Extreme — Unclassified',
+    overview: 'Primordial entities are the oldest class of creature in the known world — older than any established magical taxonomy, older than the Council\'s catalogue, possibly older than the gods themselves. They exist in a state of dormancy until disturbed. When they wake, they are not hostile in the way a predator is hostile. They are hostile in the way a force of nature is hostile.',
+    lore: 'The entity that destroyed the settlement of Brynn presented as follows, according to the single surviving witness: it came from the old forest at dusk. It looked like the trees were walking. It made no sound until it was already inside the perimeter. The Field Operations briefing determined it was pre-Reckoning, possibly pre-civilisation, with an energy signature that matches nothing in the catalogue — not Council magic, not Veil engineering, something older. It absorbs magical energy and grows stronger from it. What woke it was the uncontrolled use of a Veil artefact at a ley-line convergence point. The lesson: the older something is, the more it remembers being left alone.',
+    meta: [['Classification', 'Primordial (pre-Reckoning; no catalogue match)'], ['Documented Behaviour', 'Absorbs Veil energy; grows stronger from magical activity near it'], ['Trigger', 'Uncontrolled artefact use at ley-line convergence'], ['Known Incident', 'Destruction of Brynn settlement']]
   },
   {
-    id: 'stone-wraith', category: 'creature', title: 'Stone Wraiths',
-    excerpt: 'Entities bound to the Thornwall\'s ancient stone. They do not leave. They do not forgive trespass. They remember every path ever walked.',
-    dangerClass: 'tag-high', dangerLabel: 'High Threat',
-    overview: 'Stone Wraiths are unique Veilborn entities that have formed a symbiosis with the ancient rock of the Thornwall Mountains. Unlike most Veilborn, they are entirely fixed to a geographic location and cannot be drawn out of the mountains.',
-    lore: 'The Stone Wraiths appear to be a single distributed consciousness — each individual wraith is more like a limb than a separate being. They share memory across the entire mountain range, which means they know every path, every secret passage, and the identity of every being who has ever crossed the Thornwall. The Ironbound Covenant maintains a grudging working relationship with the Wraiths, which is part of what makes their guide services uniquely reliable. The Covenant knows which passes the Wraiths permit and which they do not — and has learned never to ask why the forbidden passes are forbidden.',
-    meta: [['Origin', 'Veilborn-geology hybrid'], ['Behavior', 'Territorial, retentive'], ['Location', 'Thornwall Mountains (only)'], ['Relationship w/ Ironbound', 'Uneasy neutrality']]
+    id: 'ancient-sentinel', category: 'creature', title: 'The Ancient Sentinel',
+    excerpt: 'Matheus followed the runes down. At the far end of a chamber older than anything above it, something began to form. It was not quite light and not quite substance. It felt old. Exhausted. Patient.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Unknown — Not Hostile',
+    overview: 'The Ancient Sentinel is the entity Matheus encounters in the hidden chamber beneath Zyleria\'s lecture hall — a chamber sealed behind a wall that responded to his blood before he recognized what was happening. The Sentinel is not catalogued. It does not fit any class. It appears to have been waiting.',
+    lore: 'The Sentinel rose from the floor without touching it — a figure that suggested human proportion the way a reflection in moving water suggests a face: recognisable, shifting, never entirely resolved. Its edges moved constantly. Where a face might have been there was brightness without feature. Where hands might have been the light fractured into something like fingers. It spoke. The voice was not sound in any conventional sense. And it knew him. Not his name — something older than his name. The runes in the chamber were unlike any dialect in the Ancient Languages curriculum. The symbols were rawer, cut as though by someone working urgently, or in poor light, or both. Considerably older than anything above.',
+    meta: [['Location', 'Hidden chamber beneath Zyleria\'s western lecture hall'], ['Access', 'Responds to vessel bloodline only'], ['Nature', 'Primordial; appears to have been waiting specifically'], ['Matheus\'s Assessment', 'Not threatening in the way the Umbraclaw was threatening. Exhausted. Patient.']]
   },
   // Artifacts
   {
-    id: 'veil-anchor', category: 'artifact', title: 'A Veil Anchor',
-    excerpt: 'An object infused with enough Veil-energy to stabilize a localized breach. Extraordinarily rare. Every known Anchor has a history of changing hands through violence.',
-    dangerClass: 'tag-high', dangerLabel: 'Dangerous to Possess',
-    overview: 'A Veil Anchor is a physical object — typically a carved stone or cast metal vessel — that has been saturated with Veil-energy over a long period until it can independently dampen or stabilize nearby Veil activity. They do not suppress the Veil; they regulate it.',
-    lore: 'There are nine known Veil Anchors in existence. The Veilwardens hold six. One is lost in the Ashen Wastes. One is held by the Ironbound Covenant as collateral in an ancient agreement whose terms no one currently living fully understands. One was reportedly acquired by the Umbral Court seventeen years ago, at which point it presumably serves the opposite of its intended purpose. Anchors are not destroyed by the Umbral Court — they are inverted, calibrated to amplify Veil activity rather than dampen it. This takes approximately a decade of ritual work to accomplish.',
-    meta: [['Known Quantity', '9 (6 Warden-held, 3 unaccounted)'], ['Effect', 'Veil stabilization (or inversion)'], ['Creation', 'Unknown / ancient'], ['Current Status', '3 missing / potentially hostile']]
+    id: 'matheus-medallion', category: 'artifact', title: 'Matheus\'s Medallion',
+    excerpt: 'A rose coiled around a flame. He inherited it. He has not yet understood what that means — or why the Council\'s mark also shows a rose.',
+    dangerClass: 'tag-unknown', dangerLabel: 'Significance Unknown (to him)',
+    overview: 'Matheus carries a medallion inherited from his family: a rose coiled around a flame. It is the only tangible inheritance from a past he does not fully know. He is aware it is old. He is not yet aware that the rose appears in two places: on his medallion, and on the mark of the Council of Shadows (a dragon intertwined with a rose).',
+    lore: 'The shared rose is not coincidence. It points to a common ancient origin that predates both the Sages and the Council — a time before the current factional division of the world, when the vessel bloodline was whole and its symbols unified. Alaric knows what the medallion is. He has not said. He operates on the principle that Matheus must arrive at certain understandings himself, because what is told and what is known are different things, and the knowledge that will matter is the knowledge Matheus earns. This is either wisdom or cruelty. It is probably both.',
+    meta: [['Description', 'Rose coiled around a flame'], ['Origin', 'Inherited; family provenance unknown to Matheus'], ['Shared Symbol', 'The rose also appears in the Council of Shadows\' mark'], ['Significance', 'Marker of the ancient vessel bloodline — both sides of it']]
   },
   {
-    id: 'unbound-blade', category: 'artifact', title: 'The Unbound Blade',
-    excerpt: 'A sword forged from crystallized Veil-energy by Seraphel before she crossed. It cuts what cannot otherwise be cut — including lies, illusions, and the thread between a Shadowbinder and their bound.',
-    dangerClass: 'tag-extreme', dangerLabel: 'Extreme — Misuse Fatal',
-    overview: 'The Unbound Blade is the only weapon known to inflict wounds upon fully manifested Veilborn entities. It is also the only tool documented to sever an active Shadowbinding without killing the practitioner.',
-    lore: 'Seraphel the Unbound — the First Warden — spent thirty years crystallizing a fragment of raw Veil-energy into physical form. The resulting blade is approximately twenty inches long, appears black in normal light but glows violet when near Veil activity, and does not hold an edge by any conventional understanding of metalwork. Its cutting action appears to operate on a conceptual level: it severs connections more than matter. A Shadowbinder cut with the Unbound Blade finds their bindings dissolving. A ward of illusion struck by it unravels. Whether this applies to the Veil itself — whether it could be used to close the Veilgate — is the most debated question in Veilwarden scholarship. Seraphel\'s echo, still haunting the Shattered Citadel, refuses to answer.',
-    meta: [['Creator', 'Seraphel the Unbound'], ['Material', 'Crystallized Veil-energy'], ['Current Location', 'Unknown (last seen: Shattered Citadel)'], ['Unique Properties', 'Harms Veilborn, severs Shadowbinding']]
+    id: 'veil-artefacts', category: 'artifact', title: 'Veil Artefacts',
+    excerpt: 'Objects that channel or store Veil energy. In trained hands: tools. In untrained hands at a ley-line convergence: the reason a settlement of four hundred people no longer exists.',
+    dangerClass: 'tag-high', dangerLabel: 'Dangerous Without Training',
+    overview: 'Veil artefacts are objects that have been deliberately engineered to channel, store, or manipulate Veil energy. They range from the stable and well-understood (calibration tools used in the Applied Mechanics lab) to the ancient and poorly understood (objects whose original function has been lost or corrupted over centuries).',
+    lore: 'The Applied Mechanics lab at Zyleria displays its documented failures in a glass case: each one a device that worked until it didn\'t, its final state preserved in twisted metal and scorched casing, its toll noted on a small card. The lab produces new artefacts under strictly controlled conditions, with multiple failsafes and observation protocols. Amateur use of ancient artefacts in the field produces different results. The Brynn incident was caused by someone using an uncontrolled Veil artefact at a ley-line convergence point. The energy signature woke something pre-Reckoning that had been dormant in the old forest. The settlement is gone. The lesson is in the Field Operations archive now, filed under "preventable."',
+    meta: [['Types', 'Calibration tools, storage vessels, channelling foci, ancient unknowns'], ['Safe Use', 'Trained practitioners only; not near ley-line convergence points'], ['Known Incident', 'Brynn settlement (amateur use + convergence = primordial wake)'], ['Regulatory Authority', 'Sage Assembly (Field Operations division)']]
   }
 ];
 
@@ -1328,11 +1371,12 @@ function renderLore() {
   const term = currentSearch.toLowerCase();
 
   const categoryColors = {
-    location: '#4488cc',
-    faction:  '#cc4466',
-    magic:    '#9944cc',
-    creature: '#cc6622',
-    artifact: '#44aa88'
+    character: '#c8a84b',
+    location:  '#4488cc',
+    faction:   '#cc4466',
+    magic:     '#9944cc',
+    creature:  '#cc6622',
+    artifact:  '#44aa88'
   };
 
   const filtered = loreEntries.filter(e => {
